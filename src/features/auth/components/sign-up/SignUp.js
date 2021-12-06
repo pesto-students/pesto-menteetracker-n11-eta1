@@ -17,9 +17,11 @@ const SignUp = () => {
     }
 
     return (
-        <div>
-            <form onSubmit={handleSubmit} >
-                <label> Email:
+        <div className="container">
+            <form className="white" onSubmit={handleSubmit} >
+                <h5 className="grey-text text-darken-3">Sign Up</h5>
+                <br />
+                <div className="input-field">
                     <input
                         className=""
                         name="Email"
@@ -28,9 +30,9 @@ const SignUp = () => {
                         onChange={email.onChange}
                         required
                     />
-                </label>
-                <br />
-                <label> Password:
+                    <label htmlFor="title">Email</label>
+                </div>
+                <div className="input-field">
                     <input
                         className=""
                         name="Email"
@@ -39,13 +41,12 @@ const SignUp = () => {
                         onChange={password.onChange}
                         required
                     />
-                </label>
-                <br />
-                <button>Submit</button>
+                    <label htmlFor="title">Password</label>
+                </div>
+                <div className="input-field">
+                    <button className="btn blue lighten-2">Submit</button>
+                </div>
             </form>
-            <div>
-                {authError ? <p>{authError}</p> : null}
-            </div>
         </div>
     );
 }

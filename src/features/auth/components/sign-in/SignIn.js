@@ -23,9 +23,11 @@ const SignIn = () => {
         dispatch(signInWithGoogleLoadFlow())
     }
     return (
-        <div>
-            <form onSubmit={handleSubmit} >
-                <label> Email:
+        <div className="container">
+            <form className="white" onSubmit={handleSubmit} >
+                <h5 className="grey-text text-darken-3">Sign In</h5>
+                <br />
+                <div className="input-field">
                     <input
                         className=""
                         name="Email"
@@ -34,9 +36,9 @@ const SignIn = () => {
                         onChange={email.onChange}
                         required
                     />
-                </label>
-                <br />
-                <label> Password:
+                    <label htmlFor="title">Email</label>
+                </div>
+                <div className="input-field">
                     <input
                         className=""
                         name="Email"
@@ -45,10 +47,13 @@ const SignIn = () => {
                         onChange={password.onChange}
                         required
                     />
-                </label>
-                <br />
-                <button>Submit</button>
+                    <label htmlFor="title">Password</label>
+                </div>
+                <div className="input-field">
+                    <button className="btn blue lighten-2">Submit</button>
+                </div>
             </form>
+            <br />
             <button onClick={googleSignIn}>Google SignIn</button>
             <div>
                 {authError ? <p>{authError}</p> : null}
