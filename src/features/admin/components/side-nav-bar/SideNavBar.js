@@ -1,22 +1,22 @@
-import React from 'react';
-import { Link } from "react-router-dom";
-import "./style.css";
+import React, {  useState } from 'react';
 
-const SideNavBar = (props) => {
+import NavBar from "./NavBar"
 
-    function highlightColor(e) {
-        e.target.style.color = 'red';
-      }
+const SideNavBar = () => {
+    const [width, setWidth] = useState('0%')
 
-      function leaveColor(e) {
-        e.target.style.color = 'black';
-      }
+    const openSidenav = () => {
+        setWidth('25%')
+    }
+
+    const closeSidenav = () => {
+        setWidth('0%')
+    }
 
     return (
-        <div className="navbar" style ={{ width : props.width}}>
-            <button onClick={props.closeNav}>X</button>
-            <Link to="/" onMouseEnter={highlightColor} onMouseLeave={leaveColor}> Menu 1 </Link>
-            <Link to="/" onMouseEnter={highlightColor} onMouseLeave={leaveColor}> Menu 2 </Link>
+        <div>
+            <button onClick={openSidenav}>Open</button>
+            <NavBar width={width} closeNav={closeSidenav} />
         </div>
     );
 }

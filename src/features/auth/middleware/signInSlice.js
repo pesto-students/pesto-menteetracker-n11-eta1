@@ -39,7 +39,7 @@ export const signInWithEmailPasswordLoadFlow = (credentials) => {
                 auth,
                 credentials.email,
                 credentials.password
-            ).then(() => {
+            ).then((res) => {
                 dispatch(signInSuccess())
                 dispatch(authCheckerLoadFlow())
             }).catch((err) => {

@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
+import { apiAddUser } from "../api/api"
 
 import firebaseApp from '../../../config/firebase';
 const auth = getAuth(firebaseApp);
@@ -37,7 +38,15 @@ export const createUserWithEmailPasswordLoadFlow = (credentials) => {
                 auth,
                 credentials.email,
                 credentials.password
-            ).then(() => {
+            ).then( async (res) => {
+                // console.log("res : ", res)
+                const user = {
+                    "uid" : res.user.uid,
+                    "email": res.user.email,
+                    "roll" : "admin"
+                }
+                console.log(user)
+                await apiAddUser(user)
                 dispatch(signUpSuccess())
             }).catch((err) => {
                 console.log(err.code)

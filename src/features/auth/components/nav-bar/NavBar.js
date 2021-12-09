@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, withRouter } from "react-router-dom"
+import { Link } from "react-router-dom"
 import SignedOutLinks from './SignedOutLinks'
 
 const Navbar = () => {
@@ -13,4 +13,4 @@ const Navbar = () => {
     );
 }
 
-export default withRouter(Navbar);
+export default Navbar;

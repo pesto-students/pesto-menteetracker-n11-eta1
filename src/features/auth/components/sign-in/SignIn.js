@@ -1,5 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useNavigate } from "react-router-dom"
 import { useDispatch, useSelector } from 'react-redux'
+
+import { authCheckerSelector } from '../../middleware/authCheckerSlice'
 
 import useInputFormField from '../../../../shared/hooks/useInputFormField';
 import { signInSelector, signInWithEmailPasswordLoadFlow, signInWithGoogleLoadFlow } from '../../middleware/signInSlice'
@@ -8,8 +11,15 @@ import { signInSelector, signInWithEmailPasswordLoadFlow, signInWithGoogleLoadFl
 const SignIn = () => {
     const dispatch = useDispatch()
     const { authError } = useSelector(signInSelector)
+    const navigate = useNavigate()
     const email = useInputFormField()
     const password = useInputFormField()
+    const { loading, user } = useSelector(authCheckerSelector)
+
+    useEffect(() => {
+        if (user)
+            navigate("/admin/dashboard")
+    }, [user, loading])
 
     const handleSubmit = async (event) => {
         event.preventDefault();
