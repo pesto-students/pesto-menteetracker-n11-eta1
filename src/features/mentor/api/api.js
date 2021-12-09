@@ -1,8 +1,8 @@
 import axiosInstance from '../../../config/axios'
 
-export const apiGetAllmentee= async () => {
+export const apiGetAllMentorSession = async (mentorid) => {
     const response = await axiosInstance.get(
-        "/api/admin/allmentees",
+        "/api/mentor/allsessions/" + mentorid,
     )
     return response.data
 }

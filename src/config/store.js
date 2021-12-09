@@ -7,6 +7,7 @@ import { authCheckerReducer } from "../features/auth/middleware/authCheckerSlice
 import { menteeReducer } from "../features/admin/middleware/menteeSlice"
 import { mentorReducer } from "../features/admin/middleware/mentorSlice"
 import { adminTeamReducer } from "../features/admin/middleware/adminTeamSlice"
+import { mentorSessionReducer } from "../features/mentor/middleware/mentorSessionSlice"
 
 const confStore = configureStore({
     reducer: {
@@ -17,6 +18,7 @@ const confStore = configureStore({
         mentee: menteeReducer,
         mentor: mentorReducer,
         adminTeam: adminTeamReducer,
+        mentorSession: mentorSessionReducer,
     },
 
 });
