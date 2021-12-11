@@ -6,7 +6,7 @@ import { mentorSelector, mentorLoadFlow } from "../../middleware/mentorSlice"
 import MentorCard from "./mentorCard"
 
 
-const AdmMentor = () => {
+const AdminMentor = () => {
     const dispatch = useDispatch()
     const { loading, error, mentorList } = useSelector(mentorSelector)
 
@@ -25,4 +25,4 @@ const AdmMentor = () => {
     );
 }
  
-export default AdmMentor;
+export default AdminMentor;

@@ -37,16 +37,21 @@ export const createUserWithEmailPasswordLoadFlow = (credentials) => {
             createUserWithEmailAndPassword(
                 auth,
                 credentials.email,
-                credentials.password
+                credentials.email
             ).then( async (res) => {
                 // console.log("res : ", res)
                 const user = {
                     "uid" : res.user.uid,
                     "email": res.user.email,
-                    "roll" : "admin"
+                    "roll" : credentials.isMentee ? "mentee" : "mentor"
                 }
-                console.log(user)
                 await apiAddUser(user)
+                if(credentials.isMentee){
+                    var mentee = credentials.dbinput
+                    mentee.uid = res.user.uid
+                    mentee.email = credentials.email
+                    // await apiCreateMentee(user)
+                }
                 dispatch(signUpSuccess())
             }).catch((err) => {
                 console.log(err.code)

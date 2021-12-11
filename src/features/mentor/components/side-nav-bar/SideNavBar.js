@@ -6,7 +6,7 @@ const SideNavBar = () => {
     const [width, setWidth] = useState('0%')
 
     const openSidenav = () => {
-        setWidth('25%')
+        setWidth('20%')
     }
 
     const closeSidenav = () => {

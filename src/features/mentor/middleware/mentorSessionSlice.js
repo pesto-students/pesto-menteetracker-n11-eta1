@@ -32,11 +32,12 @@ export const { mentorSessionLoading, mentorSessionLoadSuccess, mentorSessionLoad
 export const mentorSessionSelector = (state) => state.mentorSession
 export const mentorSessionReducer = mentorSessionSlice.reducer
 
-export const mentorSessionLoadFlow = (mentorid) => {
+export const mentorSessionLoadFlow = () => {
     return async (dispatch) => {
         dispatch(mentorSessionLoading())
         try {
-            const mentorSession = await apiGetAllMentorSession(mentorid)
+            const user = window.localStorage.getItem('user')
+            const mentorSession = await apiGetAllMentorSession("raghu")
             dispatch(mentorSessionLoadSuccess(mentorSession))
         } catch (error) {
             console.log(error)

@@ -1,13 +1,17 @@
 import React from 'react';
 
-import NavBar from "./components/nav-bar/NavBar"
+import AppNavBar from "./components/nav-bar/AppNavBar"
 
 const LandingPage = () => {
 
     return (
         <div>
-            <NavBar></NavBar>
-            Landing Page
+            <div>
+                <AppNavBar></AppNavBar>
+            </div>
+            <div style={{  marginTop:"100px"}}>
+                Home Page
+            </div>
         </div>
     );
 }

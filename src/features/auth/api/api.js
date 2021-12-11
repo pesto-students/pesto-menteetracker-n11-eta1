@@ -7,3 +7,11 @@ export const apiAddUser= async (userData) => {
     )
     return response
 }
+
+export const apiAddMentee = async (userData) => {
+    const response = await axiosInstance.post(
+        "/api/admin/creatementee",
+        userData
+    )
+    return response
+}

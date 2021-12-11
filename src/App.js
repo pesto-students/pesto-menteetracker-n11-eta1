@@ -1,11 +1,13 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 
+import "./App.css"
+
 //Admin
-import AdmDashboard from "./features/admin/components/dashboard/AdmDashboard";
-import AdmMentee from "./features/admin/components/mentee/AdmMentee";
-import AdmMentor from "./features/admin/components/mentor/AdmMentor";
-import AdmTeam from "./features/admin/components/team/AdmTeam";
+import AdminDashboard from "./features/admin/components/dashboard/AdminDashboard";
+import AdminMentee from "./features/admin/components/mentee/AdminMentee";
+import AdminMentor from "./features/admin/components/mentor/AdminMentor";
+import AdminTeam from "./features/admin/components/team/AdminTeam";
 
 //Auth & Home
 import LandingPage from './features/auth/LandingPage';
@@ -24,10 +26,10 @@ function App() {
       <Route path="/" element={<LandingPage />} />
       <Route path="/signin" element={<SignIn />} />
       <Route path="/signup" element={<SignUp />} />
-      <Route path="/admin/dashboard" element={<AdmDashboard />} />
-      <Route path="/admin/mentee" element={<AdmMentee />} />
-      <Route path="/admin/mentor" element={<AdmMentor />} />
-      <Route path="/admin/team" element={<AdmTeam />} />
+      <Route path="/admin/dashboard" element={<AdminDashboard />} />
+      <Route path="/admin/mentee" element={<AdminMentee />} />
+      <Route path="/admin/mentor" element={<AdminMentor />} />
+      <Route path="/admin/team" element={<AdminTeam />} />
       <Route path="/mentor/dashboard" element={<MentorDashboard />} />
       <Route path="/mentor/session" element={<MentorSession />} />
       <Route path="/mentor/team" element={<MentorTeam />} />

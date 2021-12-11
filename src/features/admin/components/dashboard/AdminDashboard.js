@@ -2,7 +2,7 @@ import React from 'react';
 
 import SideNavBar from "../side-nav-bar/SideNavBar"
 
-const AdmDashboard = () => {
+const AdminDashboard = () => {
     return (
         <div>
             <SideNavBar />
@@ -11,4 +11,4 @@ const AdmDashboard = () => {
     );
 }
 
-export default AdmDashboard;
+export default AdminDashboard;

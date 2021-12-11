@@ -40,6 +40,9 @@ export const signInWithEmailPasswordLoadFlow = (credentials) => {
                 credentials.email,
                 credentials.password
             ).then((res) => {
+                console.log(res)
+                const user = {uid: res.user.uid, email: res.user.email}
+                window.localStorage.setItem('user', user)
                 dispatch(signInSuccess())
                 dispatch(authCheckerLoadFlow())
             }).catch((err) => {

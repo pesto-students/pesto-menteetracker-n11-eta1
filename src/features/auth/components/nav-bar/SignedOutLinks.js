@@ -1,14 +1,13 @@
 import React from 'react'
-import { NavLink} from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 
 const SignedOutLinks = () => {
   return (
-    <div>
-      <ul className="right">
-        <li><NavLink to='/signin'>SignIn</NavLink></li>
-        <li><NavLink to='/signup'>SignUp</NavLink></li>
-      </ul>
-    </div>
+      <div >
+        <div className="item"><NavLink to='/signin'>SignIn</NavLink></div>
+        <div className="item"><NavLink to='/signup'>SignUp</NavLink></div>
+      </div>
+
   )
 }
 
