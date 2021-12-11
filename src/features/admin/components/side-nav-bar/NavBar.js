@@ -13,7 +13,7 @@ const NavBar = (props) => {
       }
 
     return (
-        <div className="navbar" style ={{ width : props.width}}>
+        <div className="side-nav-bar-admin" style ={{ width : props.width}}>
             <button onClick={props.closeNav}>X</button>
             <Link to="/admin/dashboard" onMouseEnter={highlightColor} onMouseLeave={leaveColor}>Dashboard</Link>
             <Link to="/admin/mentee" onMouseEnter={highlightColor} onMouseLeave={leaveColor}>Mentees</Link>

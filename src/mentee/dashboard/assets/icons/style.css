@@ -1,0 +1,3 @@
+.fa-primary, .fa-secondary {
+  transition: var(--transition-speed);
+}
