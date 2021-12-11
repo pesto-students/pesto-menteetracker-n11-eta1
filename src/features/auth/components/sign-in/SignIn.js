@@ -1,5 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useNavigate } from "react-router-dom"
 import { useDispatch, useSelector } from 'react-redux'
+
+import { authCheckerSelector } from '../../middleware/authCheckerSlice'
 
 import useInputFormField from '../../../../shared/hooks/useInputFormField';
 import { signInSelector, signInWithEmailPasswordLoadFlow, signInWithGoogleLoadFlow } from '../../middleware/signInSlice'
@@ -8,8 +11,15 @@ import { signInSelector, signInWithEmailPasswordLoadFlow, signInWithGoogleLoadFl
 const SignIn = () => {
     const dispatch = useDispatch()
     const { authError } = useSelector(signInSelector)
+    const navigate = useNavigate()
     const email = useInputFormField()
     const password = useInputFormField()
+    const { loading, user } = useSelector(authCheckerSelector)
+
+    useEffect(() => {
+        if (user)
+            navigate("/admin/dashboard")
+    }, [user, loading])
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -23,9 +33,11 @@ const SignIn = () => {
         dispatch(signInWithGoogleLoadFlow())
     }
     return (
-        <div>
-            <form onSubmit={handleSubmit} >
-                <label> Email:
+        <div className="container">
+            <form className="white" onSubmit={handleSubmit} >
+                <h5 className="grey-text text-darken-3">Sign In</h5>
+                <br />
+                <div className="input-field">
                     <input
                         className=""
                         name="Email"
@@ -34,9 +46,9 @@ const SignIn = () => {
                         onChange={email.onChange}
                         required
                     />
-                </label>
-                <br />
-                <label> Password:
+                    <label htmlFor="title">Email</label>
+                </div>
+                <div className="input-field">
                     <input
                         className=""
                         name="Email"
@@ -45,10 +57,13 @@ const SignIn = () => {
                         onChange={password.onChange}
                         required
                     />
-                </label>
-                <br />
-                <button>Submit</button>
+                    <label htmlFor="title">Password</label>
+                </div>
+                <div className="input-field">
+                    <button className="btn blue lighten-2">Submit</button>
+                </div>
             </form>
+            <br />
             <button onClick={googleSignIn}>Google SignIn</button>
             <div>
                 {authError ? <p>{authError}</p> : null}

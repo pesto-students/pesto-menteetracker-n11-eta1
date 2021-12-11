@@ -6,7 +6,6 @@ const auth = getAuth(firebaseApp);
 
 export const initialState = {
     loading: false,
-    hasError: false,
     user: null
 }
 
@@ -19,12 +18,10 @@ const authCheckerSlice = createSlice({
         },
         authCheckerLoadSuccess: (state, { payload }) => {
             state.loading = false
-            state.hasError = false
             state.user = payload
         },
         authCheckerLoadFailure: (state) => {
             state.loading = false
-            state.hasError = true
             state.user = null
         }
 
@@ -40,12 +37,14 @@ export const authCheckerLoadFlow = () => {
     return async (dispatch) => {
         dispatch(authCheckerLoading())
         try {
-            const user = auth.currentUser;
-            console.log(user)
-            if (user)
-                dispatch(authCheckerLoadSuccess(user))
-            else
-            dispatch(authCheckerLoadFailure())
+            auth.onAuthStateChanged(authUser => {
+                if (authUser) {
+                    console.log(authUser)
+                    dispatch(authCheckerLoadSuccess({ email: authUser.email }))
+                }
+                else
+                    dispatch(authCheckerLoadFailure())
+            })
         } catch (error) {
             console.log(error)
             dispatch(authCheckerLoadFailure())

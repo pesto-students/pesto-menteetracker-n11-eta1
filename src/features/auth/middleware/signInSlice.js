@@ -2,6 +2,8 @@ import { createSlice } from '@reduxjs/toolkit'
 import { getAuth, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
 
 import firebaseApp from '../../../config/firebase';
+import { authCheckerLoadFlow } from '../middleware/authCheckerSlice'
+
 const auth = getAuth(firebaseApp);
 
 export const initialState = {
@@ -37,8 +39,9 @@ export const signInWithEmailPasswordLoadFlow = (credentials) => {
                 auth,
                 credentials.email,
                 credentials.password
-            ).then(() => {
+            ).then((res) => {
                 dispatch(signInSuccess())
+                dispatch(authCheckerLoadFlow())
             }).catch((err) => {
                 console.log(err.code)
                 dispatch(signInError(err.code))
