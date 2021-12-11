@@ -10,12 +10,10 @@ function Mentee() {
             <Sidebar />
             <main>
                 <Routes>
-                    <Route path="mentee">
-                        <Route path="task" element={<Task />} />
-                        <Route path="session" element={<Session />} />
-                        <Route path="profile" element={<Profile />} />
-                        <Route path="*" element={<Hello />} />
-                    </Route>
+                    <Route path="dashboard" element={<Hello />} />
+                    <Route path="task" element={<Task />} />
+                    <Route path="session" element={<Session />} />
+                    <Route path="profile" element={<Profile />} />
                 </Routes>
             </main>
         </div>

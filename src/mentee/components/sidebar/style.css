@@ -1,10 +1,10 @@
 :root {
   font-size: 16px;
   font-family: 'Open Sans';
-  --text-primary: #b6b6b6;
-  --text-secondary: #ececec;
-  --bg-primary: #23232e;
-  --bg-secondary: #141418;
+  --text-primary: #1f1f1f;
+  --text-secondary: #000000;
+  --bg-primary: #e4e4e4;
+  --bg-secondary: #ffffff;
   --transition-speed: 600ms;
 }
 

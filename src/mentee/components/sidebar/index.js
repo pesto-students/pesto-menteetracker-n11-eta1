@@ -16,28 +16,27 @@ function MenteeSidebar() {
                         <LogoSideIcon />
                     </div>
                 </li>
-                <Link to="/mentee/dashboard">
+                <Link to="dashboard">
                     <li className="nav-item nav-link">
-                        <HiHome className="fa-primary" size={28} />
+                        <HiHome className="fa-primary" size={70} />
                         <span className="link-text">Dashboard</span>
                     </li>
                 </Link>
-                <Link to="/mentee/session">
+                <Link to="session">
                     <li className="nav-item nav-link">
-                        <RiGroupFill className="fa-primary" size={25} />
+                        <RiGroupFill className="fa-primary" size={70} />
                         <span className="link-text">Session</span>
                     </li>
                 </Link>
-                <Link to="/mentee/task">
+                <Link to="task">
                     <li className="nav-item nav-link">
-                        <RiTrelloFill className="fa-primary" size={28} />
+                        <RiTrelloFill className="fa-primary" size={70} />
                         <span className="link-text">Task</span>
                     </li>
                 </Link>
-                <Link to="/mentee/profile">
+                <Link to="profile">
                     <li className="nav-item nav-link">
-
-                        <BsFillPersonFill className="fa-primary" size={30} />
+                        <BsFillPersonFill className="fa-primary" size={70} />
                         <span className="link-text">Profile</span>
                     </li>
                 </Link>
