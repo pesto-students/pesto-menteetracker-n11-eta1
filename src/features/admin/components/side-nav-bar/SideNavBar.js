@@ -1,4 +1,4 @@
-import React, {  useState } from 'react';
+import React, { useState } from 'react';
 
 import NavBar from "./NavBar"
 
@@ -16,6 +16,9 @@ const SideNavBar = () => {
     return (
         <div>
             <button onClick={openSidenav}>Open</button>
+            <div className="btn">
+                Hi jay
+            </div>
             <NavBar width={width} closeNav={closeSidenav} />
         </div>
     );

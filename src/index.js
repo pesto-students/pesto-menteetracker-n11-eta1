@@ -6,6 +6,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import store from './config/store';
 import App from './App';
 
+
 ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>

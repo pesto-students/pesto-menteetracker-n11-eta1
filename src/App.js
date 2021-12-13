@@ -5,7 +5,8 @@ import LandingPage from './features/auth/LandingPage';
 import SignIn from './features/auth/components/sign-in/SignIn';
 import SignUp from './features/auth/components/sign-up/SignUp';
 
-import "./App.css"
+// import "./App.css"
+import "./index.css"
 
 //Admin
 import AdminDashboard from "./features/admin/components/dashboard/AdminDashboard";
@@ -21,6 +22,7 @@ import MentorProfile from "./features/mentor/components/profile/Profile"
 import MenteeTask from './mentee/task'
 import MenteeSession from './mentee/session'
 import MenteeProfile from './mentee/profile'
+
 
 const App = () => {
   return (
