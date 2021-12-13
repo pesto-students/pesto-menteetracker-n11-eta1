@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 
 import SideNavBar from "../side-nav-bar/SideNavBar"
-import { mentorProfileSelector, mentorProfileLoadFlow} from "../../middleware/mentorProfileSlice"
+import { mentorProfileSelector, mentorProfileLoadFlow } from "../../middleware/mentorProfileSlice"
 
 const MentorProfile = () => {
     const dispatch = useDispatch()
@@ -13,10 +13,10 @@ const MentorProfile = () => {
     }, [])
 
     return (
-        <div>
+        <div className="flex bg-gray-100">
             <SideNavBar />
-            Mentor Profile
             <div>
+                Mentor Profile
             {mentor && mentor.uid}
             </div>
         </div>

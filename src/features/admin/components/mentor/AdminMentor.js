@@ -1,4 +1,4 @@
-import React , { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 
 import SideNavBar from "../side-nav-bar/SideNavBar"
@@ -14,15 +14,17 @@ const AdminMentor = () => {
         dispatch(mentorLoadFlow())
     }, [])
 
-    return (  
-        <div>
+    return (
+        <div className="flex bg-gray-100">
             <SideNavBar></SideNavBar>
-            Admin Mentor Tab
-            { mentorList && mentorList.map(mentor => {
+            <div>
+                Admin Mentor Tab
+            {mentorList?.map(mentor => {
                 return <MentorCard mentor={mentor} key={mentor._id} />
             })}
+            </div>
         </div>
     );
 }
- 
+
 export default AdminMentor;

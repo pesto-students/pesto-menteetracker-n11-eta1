@@ -39,14 +39,12 @@ export const authCheckerLoadFlow = () => {
         try {
             auth.onAuthStateChanged(authUser => {
                 if (authUser) {
-                    // console.log(authUser)
                     dispatch(authCheckerLoadSuccess({ email: authUser.email }))
                 }
                 else
                     dispatch(authCheckerLoadFailure())
             })
         } catch (error) {
-            console.log(error)
             dispatch(authCheckerLoadFailure())
         }
     }

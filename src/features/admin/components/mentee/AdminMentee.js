@@ -24,15 +24,17 @@ const AdminMentee = () => {
     }
 
     return (
-        <div>
-            <SideNavBar></SideNavBar>
-            <button onClick={openModal}>Add Mentee</button>
-            Admin Mentee Tab
-            { menteeList && menteeList.map(mentee => {
-                return <Menteecard mentee={mentee} key={mentee._id} />
-            })}
-            <CreateMentee isOpen={showModal}
-                onRequestClose={closeModal}></CreateMentee>
+        <div className="flex bg-gray-100">
+            <SideNavBar/>
+            <div>
+                <button onClick={openModal} className="btn">Add Mentee</button>
+            Admin Mentee
+            {menteeList?.map(mentee => {
+                    return <Menteecard mentee={mentee} key={mentee._id} />
+                })}
+                <CreateMentee isOpen={showModal}
+                    onRequestClose={closeModal}></CreateMentee>
+            </div>
         </div>
     );
 }

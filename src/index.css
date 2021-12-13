@@ -17,5 +17,5 @@
 }
 
 .btn{
-    @apply uppercase px-2 py-2 rounded-full text-sm font-bold cursor-pointer tracking-normal text-primary
+    @apply uppercase px-2 py-2 rounded-full text-sm font-bold cursor-pointer tracking-normal text-primary;
 }
