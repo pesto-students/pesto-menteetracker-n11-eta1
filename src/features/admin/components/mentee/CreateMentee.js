@@ -5,10 +5,20 @@ import Select from "react-select"
 
 import useInputFormField from 'shared/hooks/useInputFormField';
 import { signUpSelector, createUserWithEmailPasswordLoadFlow } from 'features/auth/middleware/signUpSlice'
-import { menteeLoadFlow } from "../../middleware/menteeSlice";
 import { apiGetAllBatches, apiGetAllTeams } from "../../api/api"
 
 ReactModal.setAppElement('#root');
+
+const customStyles = {
+    content: {
+        top: '40%',
+        left: '50%',
+        right: 'auto',
+        bottom: 'auto',
+        marginRight: '-50%',
+        transform: 'translate(-50%, -50%)',
+    },
+};
 
 const CreateMentee = (props) => {
     const dispatch = useDispatch()
@@ -17,7 +27,7 @@ const CreateMentee = (props) => {
     const name = useInputFormField()
 
     const [batcheOptions, setBatcheOptions] = useState([]);
-    const [batche, setBatches] = useState(null)
+    const [batch, setBatches] = useState(null)
 
     const [teamOptions, setTeamOptions] = useState([]);
     const [team, setTeam] = useState(null)
@@ -58,63 +68,71 @@ const CreateMentee = (props) => {
             name: name.value,
             isMentee: true,
             dbinput: {
-                batch: batch,
-                team: team,
+                batch: batch.value,
+                team: team.value,
             }
         }))
-        dispatch(menteeLoadFlow())
+        props.onRequestClose();
     }
     return (
-        <div >
+        <div  >
             <ReactModal isOpen={props.isOpen}
                 onRequestClose={props.onRequestClose}
+                style={customStyles}
             >
-                <button onClick={props.onRequestClose}>close</button>
-                <div className="container">
-                    <form className="white" onSubmit={handleSubmit} >
-                        <h5 className="grey-text text-darken-3">Add Mentee</h5>
-                        <label>Select Batch</label>
-                        <Select
-                            className="selet-width-custom"
-                            value={batche}
-                            onChange={handleChangeBatches}
-                            options={batcheOptions}
-                            isMulti={false}
-                        />
-                        <label>Select Team</label>
-                        <Select
-                            className="selet-width-custom"
-                            value={team}
-                            onChange={handleChangeTeam}
-                            options={teamOptions}
-                            isMulti={false}
-                        />
-                        <br></br>
-                        <div className="input-field">
-                            <input
+                <div className="flex justify-between">
+                    <h1 className="font-bold text-green-500">Create Mentee</h1>
+                    <button className="text-2xl font-bold text-red-500" onClick={props.onRequestClose}>X</button>
+                </div>
+                <div className="">
+                    <form onSubmit={handleSubmit} >
+                        <div class="mb-2">
+                            <label className="block text-gray-700 text-sm font-bold mb-1">Select Batch</label>
+                            <Select
                                 className=""
-                                name="Name"
+                                value={batch}
+                                onChange={handleChangeBatches}
+                                options={batcheOptions}
+                                isMulti={false}
+                            />
+                        </div>
+                        <div class="mb-2">
+                            <label className="block text-gray-700 text-sm font-bold mb-1">Select Team</label>
+                            <Select
+                                className=""
+                                value={team}
+                                onChange={handleChangeTeam}
+                                options={teamOptions}
+                                isMulti={false}
+                            />
+                        </div>
+                        <div className="mb-2">
+                            <label className="block text-gray-700 text-sm font-bold mb-1" htmlFor="title">Mentee Name</label>
+                            <input
+                                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                name="mname"
                                 type="text"
                                 value={name.value}
                                 onChange={name.onChange}
+                                placeholder="Mentee Name"
                                 required
                             />
-                            <label htmlFor="title">Name</label>
                         </div>
-                        <div className="input-field">
+                        <div className="mb-3">
+                        <label className="block text-gray-700 text-sm font-bold mb-1" htmlFor="title">Mentee Email</label>
                             <input
-                                className=""
+                                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                 name="Email"
-                                type="text"
+                                type="email"
                                 value={email.value}
                                 onChange={email.onChange}
+                                placeholder="Mentee Email"
                                 required
                             />
-                            <label htmlFor="title">Email</label>
                         </div>
 
-                        <div className="input-field">
-                            <button className="btn blue lighten-2">Submit</button>
+                        <div className="text-center">
+                            <button className="btn">Submit</button>
                         </div>
                     </form>
                 </div>

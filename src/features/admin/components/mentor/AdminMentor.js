@@ -17,12 +17,16 @@ const AdminMentor = () => {
     return (
         <div className="flex bg-gray-100">
             <SideNavBar></SideNavBar>
-            <div>
-                Admin Mentor Tab
-            {mentorList?.map(mentor => {
-                return <MentorCard mentor={mentor} key={mentor._id} />
-            })}
+           <div className="flex-1">
+           <div className=" h-14 bg-white text-center py-3 text-1xl text-blue-500 shadow-md font-bold">
+                    Mentors
             </div>
+            <div className="m-10 grid grid-cols-3 gap-7">
+                {mentorList?.map(mentor => {
+                    return <MentorCard mentor={mentor} key={mentor._id} />
+                })}
+            </div>
+           </div>
         </div>
     );
 }

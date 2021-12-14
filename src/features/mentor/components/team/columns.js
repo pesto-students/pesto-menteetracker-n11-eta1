@@ -9,7 +9,7 @@ export const columns = [
         accessor: 'team',
     },
     {
-        Header: 'Datetime',
+        Header: 'Start Date',
         accessor: 'datetime',
     },
 ]

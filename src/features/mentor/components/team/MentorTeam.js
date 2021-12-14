@@ -17,8 +17,10 @@ const MentorTeam = () => {
     return (
         <div className="flex bg-gray-100">
             <SideNavBar />
-            <div>
-                Mentor Team
+            <div className="flex-1">
+            <div className="h-14 bg-white text-center py-3 text-1xl text-yellow-500 shadow-md font-bold">
+                    Teams
+               </div>
                 <Table columns={columns} data={mentorTeamList} />
             </div>
         </div>

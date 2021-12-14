@@ -17,9 +17,11 @@ const AdminTeam = () => {
     return (
         <div className="flex bg-gray-100">
             <SideNavBar />
-            <div>
-                Admin Teams
-            <Table columns={columns} data={adminTeamList} />
+            <div className="flex-1">
+               <div className="h-14 bg-white text-center py-3 text-1xl text-blue-500 shadow-md font-bold">
+                   Teams
+               </div>
+               <Table columns={columns} data={adminTeamList} />
             </div>
         </div>
     );

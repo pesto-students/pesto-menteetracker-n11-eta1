@@ -1,8 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
-import { apiAddUser } from "../api/api"
+import { apiAddUser, apiCreateMentee } from "../api/api"
 
 import firebaseApp from '../../../config/firebase';
+import { menteeLoadFlow } from "features/admin/middleware/menteeSlice";
 const auth = getAuth(firebaseApp);
 
 export const initialState = {
@@ -38,19 +39,25 @@ export const createUserWithEmailPasswordLoadFlow = (credentials) => {
                 auth,
                 credentials.email,
                 credentials.email
-            ).then( async (res) => {
-                // console.log("res : ", res)
+            ).then(async (res) => {
+                console.log("res : ", res)
                 const user = {
-                    "uid" : res.user.uid,
+                    "uid": res.user.uid,
                     "email": res.user.email,
-                    "roll" : credentials.isMentee ? "mentee" : "mentor"
+                    "roll": credentials.isMentee ? "mentee" : "mentor"
                 }
                 await apiAddUser(user)
-                if(credentials.isMentee){
-                    var mentee = credentials.dbinput
-                    mentee.uid = res.user.uid
-                    mentee.email = credentials.email
-                    // await apiCreateMentee(user)
+                if (credentials.isMentee) {
+                    const mentee = {
+                        "uid": res.user.uid,
+                        "email": credentials.email,
+                        "batch": credentials.dbinput.batch,
+                        "team": credentials.dbinput.team,
+                    }
+                    console.log(mentee)
+                    const resp = await apiCreateMentee(mentee)
+                    console.log(resp)
+                    dispatch(menteeLoadFlow())
                 }
                 dispatch(signUpSuccess())
             }).catch((err) => {
