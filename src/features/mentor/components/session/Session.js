@@ -16,10 +16,12 @@ const MentorSession = () => {
     }, [])
 
     return (
-        <div>
+        <div className="flex bg-gray-100">
             <SideNavBar />
-            Mentor Session
+            <div>
+                Mentor Session
             <Table columns={columns} data={mentorSessionList} />
+            </div>
         </div>
     );
 }

@@ -15,10 +15,12 @@ const MentorTeam = () => {
     }, [])
 
     return (
-        <div>
+        <div className="flex bg-gray-100">
             <SideNavBar />
-            Mentor Team
-            <Table columns={columns} data={mentorTeamList} />
+            <div>
+                Mentor Team
+                <Table columns={columns} data={mentorTeamList} />
+            </div>
         </div>
     );
 }

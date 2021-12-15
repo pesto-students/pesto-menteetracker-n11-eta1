@@ -4,9 +4,11 @@ import SideNavBar from "../side-nav-bar/SideNavBar"
 
 const MentorDashboard = () => {
     return (
-        <div>
+        <div className="flex bg-gray-100">
             <SideNavBar />
-            Mentor dashboard
+            <div>
+                Mentor dashboard
+            </div>
         </div>
     );
 }

@@ -40,7 +40,6 @@ export const menteeLoadFlow = () => {
             const mentee = await apiGetAllmentee()
             dispatch(menteeLoadSuccess(mentee))
         } catch (error) {
-            console.log(error)
             dispatch(menteeLoadFailure())
         }
     }

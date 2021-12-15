@@ -3,8 +3,8 @@ import ReactModal from 'react-modal';
 import { batch, useDispatch, useSelector } from 'react-redux'
 import Select from "react-select"
 
-import useInputFormField from '../../../../shared/hooks/useInputFormField';
-import { signUpSelector, createUserWithEmailPasswordLoadFlow } from '../../../auth/middleware/signUpSlice'
+import useInputFormField from 'shared/hooks/useInputFormField';
+import { signUpSelector, createUserWithEmailPasswordLoadFlow } from 'features/auth/middleware/signUpSlice'
 import { menteeLoadFlow } from "../../middleware/menteeSlice";
 import { apiGetAllBatches, apiGetAllTeams } from "../../api/api"
 

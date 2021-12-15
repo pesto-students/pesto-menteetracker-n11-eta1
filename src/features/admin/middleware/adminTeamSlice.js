@@ -40,7 +40,6 @@ export const adminTeamLoadFlow = () => {
             const adminTeam = await apiGetAlladminTeam()
             dispatch(adminTeamLoadSuccess(adminTeam))
         } catch (error) {
-            console.log(error)
             dispatch(adminTeamLoadFailure())
         }
     }
