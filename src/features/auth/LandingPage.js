@@ -6,12 +6,8 @@ const LandingPage = () => {
 
     return (
         <div>
-            <div>
-                <AppNavBar></AppNavBar>
-            </div>
-            <div style={{  marginTop:"100px"}}>
-                Home Page
-            </div>
+            <AppNavBar></AppNavBar>
+
         </div>
     );
 }

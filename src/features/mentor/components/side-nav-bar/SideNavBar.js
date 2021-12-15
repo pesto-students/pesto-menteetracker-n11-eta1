@@ -1,29 +1,47 @@
-import React, { useState } from 'react';
+import "./style.css";
+import LogoSideIcon from "./logoSide.js";
+import { HiHome } from "react-icons/hi";
+import { RiGroupFill } from "react-icons/ri";
+import { RiTrelloFill } from "react-icons/ri"
+import { BsFillPersonFill } from "react-icons/bs";
+import { Link } from "react-router-dom";
 
-import LiDashboard from "./LiDashboard"
-import LiSession from "./LiSession"
-import LiTeam from "./LiTeam"
-import LiProfile from "./LiProfile"
-
-const SideNavBar = () => {
-
+function SideNavBar () {
     return (
-        <div >
-            <div className="min-h-screen flex flex-row bg-gray-100 ">
-                <div className="flex flex-col w-56 bg-white">
-                    <div className="flex items-center justify-center h-14 shadow-md font-bold">
-                        <h1 className="text-lg text-yellow-500">Pesto Mentor</h1>
+        <nav className="navbar">
+            <ul className="navbar-nav">
+                <li className="logo">
+                    <div className="nav-link">
+                        <span className="link-text logo-text">Pesto</span>
+                        <LogoSideIcon />
                     </div>
-                    <ul className="flex flex-col py-4">
-                        <LiDashboard />
-                        <LiSession />
-                        <LiTeam />
-                        <LiProfile />
-                    </ul>
-                </div>
-            </div>
-        </div>
-
+                </li>
+                <Link to="/mentor/dashboard">
+                    <li className="nav-item nav-link">
+                        <HiHome className="fa-primary" size={70} />
+                        <span className="link-text">Dashboard</span>
+                    </li>
+                </Link>
+                <Link to="/mentor/session">
+                    <li className="nav-item nav-link">
+                        <RiGroupFill className="fa-primary" size={70} />
+                        <span className="link-text">Session</span>
+                    </li>
+                </Link>
+                <Link to="/mentor/team">
+                    <li className="nav-item nav-link">
+                        <RiTrelloFill className="fa-primary" size={70} />
+                        <span className="link-text">Team</span>
+                    </li>
+                </Link>
+                <Link to="/mentor/profile">
+                    <li className="nav-item nav-link">
+                        <BsFillPersonFill className="fa-primary" size={70} />
+                        <span className="link-text">Profile</span>
+                    </li>
+                </Link>
+            </ul>
+        </nav>
     );
 }
 

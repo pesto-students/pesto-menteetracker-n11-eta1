@@ -41,3 +41,10 @@ export const apiCreateMentee = async (mentee) => {
     )
     return response.data
 }
+
+export const apiCreateBatch = async (batch) => {
+    const response = await axiosInstance.post(
+        "/api/admin/createbatch",
+    )
+    return response.data
+}

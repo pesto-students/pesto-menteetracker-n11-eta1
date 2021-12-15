@@ -48,6 +48,7 @@ export const createUserWithEmailPasswordLoadFlow = (credentials) => {
                 }
                 await apiAddUser(user)
                 if (credentials.isMentee) {
+                     // SignUp for mentee
                     const mentee = {
                         "uid": res.user.uid,
                         "email": credentials.email,
@@ -58,6 +59,15 @@ export const createUserWithEmailPasswordLoadFlow = (credentials) => {
                     const resp = await apiCreateMentee(mentee)
                     console.log(resp)
                     dispatch(menteeLoadFlow())
+                }else{
+                    // SignUp for mentor
+                    const mentor = {
+                        "uid": res.user.uid,
+                        "email": credentials.email,
+                        "name" : credentials.name
+                    }
+                    console.log(mentor)
+
                 }
                 dispatch(signUpSuccess())
             }).catch((err) => {

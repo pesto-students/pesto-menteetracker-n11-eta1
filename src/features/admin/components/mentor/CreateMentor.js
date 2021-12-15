@@ -21,57 +21,18 @@ const customStyles = {
     },
 };
 
-const CreateMentee = (props) => {
+const CreateMentor= (props) => {
     const dispatch = useDispatch()
     const { authError } = useSelector(signUpSelector)
     const email = useInputFormField()
     const name = useInputFormField()
-
-    const [batcheOptions, setBatcheOptions] = useState([]);
-    const [batch, setBatches] = useState(null)
-
-    const [teamOptions, setTeamOptions] = useState([]);
-    const [team, setTeam] = useState(null)
-
-    useEffect(() => {
-        renderAllBatches()
-        renderAllTeams()
-    }, [])
-
-    const handleChangeTeam = selectedOption => {
-        setTeam(selectedOption)
-    };
-
-    const handleChangeBatches = selectedOption => {
-        setBatches(selectedOption)
-    };
-
-    const renderAllTeams = async () => {
-        const data = await apiGetAllTeams()
-        const mapData = data.map(ele => {
-            return { value: ele.name, label: ele.name }
-        })
-        setTeamOptions(mapData)
-    }
-
-    const renderAllBatches = async () => {
-        const data = await apiGetAllBatches()
-        const mapData = data.map(ele => {
-            return { value: ele.name, label: ele.name }
-        })
-        setBatcheOptions(mapData)
-    }
 
     const handleSubmit = async (event) => {
         event.preventDefault();
         dispatch(createUserWithEmailPasswordLoadFlow({
             email: email.value,
             name: name.value,
-            isMentee: true,
-            dbinput: {
-                batch: batch.value,
-                team: team.value,
-            }
+            isMentee: false,
         }))
         props.onRequestClose();
     }
@@ -82,52 +43,32 @@ const CreateMentee = (props) => {
                 style={customStyles}
             >
                 <div className="flex justify-between">
-                    <h1 className="font-bold text-green-500">Create Mentee</h1>
+                    <h1 className="font-bold text-green-500">Create Mentor</h1>
                     <button className="text-2xl font-bold text-red-500" onClick={props.onRequestClose}>X</button>
                 </div>
                 <div className="">
                     <form onSubmit={handleSubmit} >
-                        <div class="mb-2">
-                            <label className="block text-gray-700 text-sm font-bold mb-1">Select Batch</label>
-                            <Select
-                                className=""
-                                value={batch}
-                                onChange={handleChangeBatches}
-                                options={batcheOptions}
-                                isMulti={false}
-                            />
-                        </div>
-                        <div class="mb-2">
-                            <label className="block text-gray-700 text-sm font-bold mb-1">Select Team</label>
-                            <Select
-                                className=""
-                                value={team}
-                                onChange={handleChangeTeam}
-                                options={teamOptions}
-                                isMulti={false}
-                            />
-                        </div>
                         <div className="mb-2">
-                            <label className="block text-gray-700 text-sm font-bold mb-1" htmlFor="title">Mentee Name</label>
+                            <label className="block text-gray-700 text-sm font-bold mb-1" htmlFor="title">MentorName</label>
                             <input
                                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                 name="mname"
                                 type="text"
                                 value={name.value}
                                 onChange={name.onChange}
-                                placeholder="Mentee Name"
+                                placeholder="MentorName"
                                 required
                             />
                         </div>
                         <div className="mb-3">
-                        <label className="block text-gray-700 text-sm font-bold mb-1" htmlFor="title">Mentee Email</label>
+                        <label className="block text-gray-700 text-sm font-bold mb-1" htmlFor="title">MentorEmail</label>
                             <input
                                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                 name="Email"
                                 type="email"
                                 value={email.value}
                                 onChange={email.onChange}
-                                placeholder="Mentee Email"
+                                placeholder="MentorEmail"
                                 required
                             />
                         </div>
@@ -142,4 +83,4 @@ const CreateMentee = (props) => {
     );
 }
 
-export default CreateMentee;
+export default CreateMentor;

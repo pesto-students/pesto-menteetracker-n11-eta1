@@ -15,11 +15,8 @@ const MentorProfile = () => {
     return (
         <div className="flex bg-gray-100">
             <SideNavBar />
-            <div className="flex-1">
-                <div className="h-14 bg-white text-center py-3 text-1xl text-yellow-500 shadow-md font-bold">
-                    Profile
-               </div>
-                {mentor && mentor.uid}
+            <div className="flex-1 h-screen ml-24">
+                {mentor?.uid}
             </div>
         </div>
     );

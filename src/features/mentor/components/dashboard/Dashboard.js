@@ -6,12 +6,9 @@ const MentorDashboard = () => {
     return (
         <div className="flex bg-gray-100">
             <SideNavBar />
-            <div className="flex-1">
-                <div className="h-14 bg-white text-center py-3 text-1xl text-yellow-500 shadow-md font-bold">
-                    Dashboard
-               </div>
-                Mentor dashboard
-            </div>
+            <main className="bg-gray-100 flex-1 h-screen">
+                <h5 className=" ml-60 text-1xl">Mentor Dashboard</h5>
+            </main>
         </div>
     );
 }

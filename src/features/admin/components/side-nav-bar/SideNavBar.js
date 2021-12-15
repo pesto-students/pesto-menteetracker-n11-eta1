@@ -1,29 +1,47 @@
-import React, { useState } from 'react';
+import "./style.css";
+import LogoSideIcon from "./logoSide.js";
+import { HiHome } from "react-icons/hi";
+import { RiGroupFill } from "react-icons/ri";
+import { RiTrelloFill } from "react-icons/ri"
+import { BsFillPersonFill } from "react-icons/bs";
+import { Link } from "react-router-dom";
 
-import LiDashboard from "./LiDashboard"
-import LiMentee from "./LiMentee"
-import LiMentor from "./LiMentor"
-import LiTeam from "./LiTeam"
-
-const SideNavBar = () => {
-
+function SideNavBar () {
     return (
-        <div >
-            <div className="min-h-screen flex flex-row bg-gray-100 ">
-                <div className="flex flex-col w-56 bg-white  ">
-                    <div className="flex items-center justify-center shadow-md font-bold h-14">
-                        <h1 className="text-lg text-indigo-500">Pesto Admin</h1>
+        <nav className="navbar">
+            <ul className="navbar-nav">
+                <li className="logo">
+                    <div className="nav-link">
+                        <span className="link-text logo-text">Pesto</span>
+                        <LogoSideIcon />
                     </div>
-                    <ul className="flex flex-col py-4">
-                        <LiDashboard />
-                        <LiMentee />
-                        <LiMentor />
-                        <LiTeam />
-                    </ul>
-                </div>
-            </div>
-        </div>
-
+                </li>
+                <Link to="/admin/dashboard">
+                    <li className="nav-item nav-link">
+                        <HiHome className="fa-primary" size={70} />
+                        <span className="link-text">Dashboard</span>
+                    </li>
+                </Link>
+                <Link to="/admin/mentee">
+                    <li className="nav-item nav-link">
+                        <RiGroupFill className="fa-primary" size={70} />
+                        <span className="link-text">Mentee</span>
+                    </li>
+                </Link>
+                <Link to="/admin/mentor">
+                    <li className="nav-item nav-link">
+                        <RiTrelloFill className="fa-primary" size={70} />
+                        <span className="link-text">Mentor</span>
+                    </li>
+                </Link>
+                <Link to="/admin/team">
+                    <li className="nav-item nav-link">
+                        <BsFillPersonFill className="fa-primary" size={70} />
+                        <span className="link-text">Team</span>
+                    </li>
+                </Link>
+            </ul>
+        </nav>
     );
 }
 

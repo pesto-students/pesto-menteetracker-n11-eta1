@@ -18,10 +18,7 @@ const MentorSession = () => {
     return (
         <div className="flex bg-gray-100">
             <SideNavBar />
-            <div className="flex-1">
-                <div className="h-14 bg-white text-center py-3 text-1xl text-yellow-500 shadow-md font-bold">
-                    Sessions
-               </div>
+            <div className="flex-1 ml-20 h-screen">
                 <Table columns={columns} data={mentorSessionList} />
             </div>
         </div>

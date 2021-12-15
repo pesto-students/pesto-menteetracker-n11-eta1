@@ -1,32 +1,44 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 
 import SideNavBar from "../side-nav-bar/SideNavBar"
 import { mentorSelector, mentorLoadFlow } from "../../middleware/mentorSlice"
 import MentorCard from "./mentorCard"
+import  CreateMentor  from "./CreateMentor"
 
 
 const AdminMentor = () => {
     const dispatch = useDispatch()
+    const [showModal, setShowModal] = useState(false)
     const { loading, error, mentorList } = useSelector(mentorSelector)
 
     useEffect(() => {
         dispatch(mentorLoadFlow())
     }, [])
 
+    const openModal = () => {
+        setShowModal(true)
+    }
+
+    const closeModal = () => {
+        setShowModal(false)
+    }
+
     return (
         <div className="flex bg-gray-100">
             <SideNavBar></SideNavBar>
-           <div className="flex-1">
-           <div className=" h-14 bg-white text-center py-3 text-1xl text-blue-500 shadow-md font-bold">
-                    Mentors
-            </div>
-            <div className="m-10 grid grid-cols-3 gap-7">
-                {mentorList?.map(mentor => {
-                    return <MentorCard mentor={mentor} key={mentor._id} />
-                })}
-            </div>
-           </div>
+            <main className="h-screen">
+                <div >
+                    <button onClick={openModal} className="btn mx-5 my-3">Add Mentor</button>
+                    <div className="m-10 grid grid-cols-3 gap-7">
+                        {mentorList?.map(mentor => {
+                            return <MentorCard mentor={mentor} key={mentor._id} />
+                        })}
+                    </div>
+                    <CreateMentor isOpen={showModal}
+                        onRequestClose={closeModal}/>
+                </div>
+            </main>
         </div>
     );
 }
