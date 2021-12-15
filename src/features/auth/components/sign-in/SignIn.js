@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from "react-router-dom"
 import { useDispatch, useSelector } from 'react-redux'
+import BackgroundCurves from '../assets/layered-waves-haikei.svg'
 
 import { authCheckerSelector } from '../../middleware/authCheckerSlice'
 
@@ -33,40 +34,37 @@ const SignIn = () => {
         dispatch(signInWithGoogleLoadFlow())
     }
     return (
-        <div className="container">
-            <form className="white" onSubmit={handleSubmit} >
-                <h5 className="grey-text text-darken-3">Sign In</h5>
-                <br />
-                <div className="input-field">
-                    <input
-                        className=""
-                        name="Email"
-                        type="text"
-                        value={email.value}
-                        onChange={email.onChange}
-                        required
-                    />
-                    <label htmlFor="title">Email</label>
+        <div className='container'>
+            <div className='window'>
+                <div className='overlay'></div>
+                <div className='content'>
+                    <div className='welcome'>Pesto Login</div>
+                    <div className='subtitle'>Upskill...</div>
+                    <div className='input-fields'>
+                        <input
+                            type='email'
+                            placeholder='Email'
+                            className='input-line full-width'
+                            name="email"
+                            value={email.value}
+                            onChange={email.onChange}
+                        ></input>
+                        <input
+                            type='password'
+                            placeholder='Password'
+                            className='input-line full-width'
+                            name="password"
+                            value={password.value}
+                            onChange={password.onChange}
+                        ></input>
+                    </div>
+                    <div className='spacing'>or continue with
+                        <button className='highlight' onClick={googleSignIn}>Google</button>
+                    </div>
+                    <div><button className='ghost-round full-width'
+                        onClick={handleSubmit}
+                    >Login</button></div>
                 </div>
-                <div className="input-field">
-                    <input
-                        className=""
-                        name="Email"
-                        type="password"
-                        value={password.value}
-                        onChange={password.onChange}
-                        required
-                    />
-                    <label htmlFor="title">Password</label>
-                </div>
-                <div className="input-field">
-                    <button className="btn blue lighten-2">Submit</button>
-                </div>
-            </form>
-            <br />
-            <button onClick={googleSignIn}>Google SignIn</button>
-            <div>
-                {authError ? <p>{authError}</p> : null}
             </div>
         </div>
     );
