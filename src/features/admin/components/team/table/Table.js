@@ -1,5 +1,5 @@
 import React from "react";
-import { useTable, usePagination } from "react-table";
+import { useTable, usePagination, useFilters } from "react-table";
 
 
 export default function Table({ columns, data }) {
@@ -25,7 +25,7 @@ export default function Table({ columns, data }) {
     columns,
     data,
     initialState: { pageIndex: 0 },
-  }, usePagination);
+  }, useFilters, usePagination);
 
   /* 
     Render the UI for your table
@@ -41,7 +41,9 @@ export default function Table({ columns, data }) {
                 <tr {...headerGroup.getHeaderGroupProps()}>
                   {headerGroup.headers.map(column => (
                     <th {...column.getHeaderProps()} className="px-5 py-3 border-b-2 border-gray-200 bg-gray-200 text-left text-1xl font-semibold text-gray-600 uppercase tracking-wider">
-                      {column.render("Header")}</th>
+                     <div>{column.render("Header")} </div>
+                     {/* <div>{column.canFilter ? column.render('Filter') : null}</div> */}
+                      </th>
                   ))}
                 </tr>
               ))}
@@ -53,7 +55,7 @@ export default function Table({ columns, data }) {
                   <tr {...row.getRowProps()}>
                     {row.cells.map(cell => {
                       return <td className="px-5 py-5 border-b border-gray-200 bg-white text-lg"
-                       {...cell.getCellProps()}>{cell.render("Cell")}</td>;
+                        {...cell.getCellProps()}>{cell.render("Cell")}</td>;
                     })}
                   </tr>
                 );

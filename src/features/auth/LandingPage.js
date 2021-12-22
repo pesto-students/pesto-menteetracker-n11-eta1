@@ -7,7 +7,6 @@ const LandingPage = () => {
     return (
         <div>
             <AppNavBar></AppNavBar>
-
         </div>
     );
 }

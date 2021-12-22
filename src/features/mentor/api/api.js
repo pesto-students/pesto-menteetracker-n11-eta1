@@ -20,3 +20,12 @@ export const apiGetMentorProfile = async (mentorid) => {
     )
     return response.data
 }
+
+//create session
+export const apiCreateSession = async (sessionData) => {
+    const response = await axiosInstance.post(
+        "/api/mentor/profile/",
+        sessionData
+    )
+    return response.data
+}

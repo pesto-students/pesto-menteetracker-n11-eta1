@@ -1,13 +1,14 @@
-
+import { ColumnFilter } from "./ColumnFilter"
 
 export const columns = [
     {
-        Header: 'Name',
-        accessor: 'name',
-    },
-    {
         Header: 'Batch',
         accessor: 'batch',
+        Filter: ColumnFilter,
+    },
+    {
+        Header: 'Name',
+        accessor: 'name',
     },
     {
         Header: 'Mentor',

@@ -7,6 +7,7 @@ import { authCheckerSelector } from '../../middleware/authCheckerSlice'
 import useInputFormField from '../../../../shared/hooks/useInputFormField';
 import { signInSelector, signInWithEmailPasswordLoadFlow, signInWithGoogleLoadFlow } from '../../middleware/signInSlice'
 import AppNavBar from "../../components/nav-bar/AppNavBar"
+import "./style.css"
 
 const SignIn = () => {
     const dispatch = useDispatch()
@@ -33,44 +34,38 @@ const SignIn = () => {
         dispatch(signInWithGoogleLoadFlow())
     }
     return (
-        <div className="">
-            <AppNavBar />
-            <div className="w-full max-w-xs mt-20 ml-60">
-                <form onSubmit={handleSubmit} className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
-                    <h5 className="text-2xl m-4">Sign In</h5>
-                    <div className="mb-2">
-                        <label className="block text-gray-700 text-sm font-bold mb-1" htmlFor="email">Email</label>
-                        <input
-                            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                            name="mname"
-                            type="text"
-                            value={email.value}
-                            onChange={email.onChange}
-                            placeholder="Email"
-                            required
-                        />
+        <div>
+            <div className='container'>
+                <div className='window'>
+                    <div className='overlay'></div>
+                    <div className='content'>
+                        <div className='welcome'>Pesto Login</div>
+                        <div className='subtitle'>Upskill...</div>
+                        <div className='input-fields'>
+                            <input
+                                type='email'
+                                placeholder='Email'
+                                className='input-line full-width'
+                                name="email"
+                                value={email.value}
+                                onChange={email.onChange}
+                            ></input>
+                            <input
+                                type='password'
+                                placeholder='Password'
+                                className='input-line full-width'
+                                name="password"
+                                value={password.value}
+                                onChange={password.onChange}
+                            ></input>
+                        </div>
+                        <div className='spacing'>or continue with
+                        <button className='highlight' onClick={googleSignIn}>Google</button>
+                        </div>
+                        <div><button className='ghost-round full-width'
+                            onClick={handleSubmit}
+                        >Login</button></div>
                     </div>
-                    <div className="mb-2">
-                        <label className="block text-gray-700 text-sm font-bold mb-1" htmlFor="email">Password</label>
-                        <input
-                            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                            name="password"
-                            type="password"
-                            value={password.value}
-                            onChange={password.onChange}
-                            required
-                        />
-                    </div>
-                    <div className="mt-5">
-                        <button className="btn">Submit</button>
-                    </div>
-                    <div className="mt-5">
-                        <button className="btn" onClick={googleSignIn}>Google SignIn</button>
-                    </div>
-                </form>
-
-                <div>
-                    {authError ? <p>{authError}</p> : null}
                 </div>
             </div>
         </div>

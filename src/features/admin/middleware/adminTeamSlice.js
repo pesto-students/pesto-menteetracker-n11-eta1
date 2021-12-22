@@ -44,3 +44,18 @@ export const adminTeamLoadFlow = () => {
         }
     }
 }
+
+
+export const adminBatchSearchFlow = (searchedStr) => {
+    return async (dispatch) => {
+        dispatch(adminTeamLoading())
+        try {
+            var adminTeam = await apiGetAlladminTeam()
+            adminTeam = adminTeam.filter(ele => ele.batch.toLowerCase().startsWith(searchedStr.toLowerCase()))
+            console.log(adminTeam)
+            dispatch(adminTeamLoadSuccess(adminTeam))
+        } catch (error) {
+            dispatch(adminTeamLoadFailure())
+        }
+    }
+}

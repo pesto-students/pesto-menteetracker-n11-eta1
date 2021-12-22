@@ -11,7 +11,7 @@ export const apiGetAllmentor = async () => {
     const response = await axiosInstance.get(
         "/api/admin/allmentors",
     )
-    return response.data
+    return response.data;
 }
 
 export const apiGetAlladminTeam = async () => {
@@ -39,12 +39,21 @@ export const apiCreateMentee = async (mentee) => {
     const response = await axiosInstance.post(
         "/api/admin/creatementee",
     )
-    return response.data
+    return response
 }
 
-export const apiCreateBatch = async (batch) => {
+export const apiCreateBatch = async (batchData) => {
     const response = await axiosInstance.post(
         "/api/admin/createbatch",
+        batchData
     )
-    return response.data
+    return response
+}
+
+export const apiCreateTeam = async (teamData) => {
+    const response = await axiosInstance.post(
+        "/api/admin/createteam",
+        teamData
+    )
+    return response
 }

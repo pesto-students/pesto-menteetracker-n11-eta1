@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
 import ReactModal from "react-modal"
+import { useDispatch, useSelector } from 'react-redux'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import useInputFormField from 'shared/hooks/useInputFormField';
+import { apiCreateBatch } from "../../api/api"
 
 const reactModalCustomStyles = {
     content: {
@@ -16,22 +20,21 @@ const reactModalCustomStyles = {
 };
 
 const CreateBatch = (props) => {
-    const [showModal, setShowModal] = useState(false)
     const batchname = useInputFormField()
-
-    const openModal = () => {
-        setShowModal(true)
-    }
-
-    const closeModal = () => {
-        setShowModal(false)
-    }
+    const startdate = useInputFormField()
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        dispatch(createBatchFlow({
-            batch: batchname.value,
-        }))
+        const resp = await apiCreateBatch({
+            startdate: startdate.value,
+            name: batchname.value,
+        })
+        console.log(resp.status)
+        if (resp.status == 200){
+            toast.success("Successfully created batch")
+        }else{
+            toast.warning("Failed to create batch")
+        }
         props.onRequestClose();
     }
 
@@ -48,10 +51,22 @@ const CreateBatch = (props) => {
                     </div>
                     <form onSubmit={handleSubmit}>
                         <div className="mb-2">
+                            <label className="block text-gray-700 text-sm font-bold mb-1" htmlFor="title">Start Date</label>
+                            <input
+                                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                name="sdate"
+                                type="text"
+                                value={startdate.value}
+                                onChange={startdate.onChange}
+                                placeholder="dd/mm/yy"
+                                required
+                            />
+                        </div>
+                        <div className="mb-2">
                             <label className="block text-gray-700 text-sm font-bold mb-1" htmlFor="title">Batch Name</label>
                             <input
                                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                name="mname"
+                                name="bname"
                                 type="text"
                                 value={batchname.value}
                                 onChange={batchname.onChange}
@@ -65,7 +80,7 @@ const CreateBatch = (props) => {
                     </form>
                 </div>
             </ReactModal>
-
+            <ToastContainer />
         </div>
     )
 }
