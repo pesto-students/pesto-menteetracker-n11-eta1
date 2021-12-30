@@ -15,3 +15,10 @@ export const apiCreateMentee = async (userData) => {
     )
     return response
 }
+
+export const apiGetUser= async (uid) => {
+    const response = await axiosInstance.get(
+        "/api/user/getuser/" + uid,
+    )
+    return response.data
+}

@@ -7,6 +7,7 @@ import { menteeSelector, menteeLoadFlow, menteeFilterFlow } from "../../middlewa
 import CreateMentee from "./CreateMentee";
 import useShowHideModal from "shared/hooks/useShowHideModal";
 import useMenteeSearchField from 'shared/hooks/useMenteeSearchField';
+import SortMentee from "./SortMentee"
 
 
 const AdminMentee = () => {
@@ -15,6 +16,7 @@ const AdminMentee = () => {
     const { showModal, openModal, closeModal } = useShowHideModal()
     const searchedField = useMenteeSearchField()
     const [filter, setFilter] = useState("All")
+
     const batches = new Set();
     useEffect(() => {
         dispatch(menteeLoadFlow())
@@ -69,6 +71,7 @@ const AdminMentee = () => {
                             required
                         />
                         {getFilter()}
+                        <SortMentee />
                     </div>
                     <div className="m-10 grid grid-cols-3 gap-7">
                         {menteeList?.map(mentee => {

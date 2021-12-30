@@ -3,10 +3,10 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import SideNavBar from "../side-nav-bar/SideNavBar"
 import { mentorSessionSelector, mentorSessionLoadFlow } from "../../middleware/mentorSessionSlice"
-import Table from "../../../../shared/components/table/Table"
+import Table from "../session-table/Table"
 import { columns } from "./columns"
 import useShowHideModal from "shared/hooks/useShowHideModal";
-import CreateSession from "./CreateSession"
+import CreateEditSession from "./CreateEditSession"
 
 const MentorSession = () => {
     const dispatch = useDispatch()
@@ -23,8 +23,8 @@ const MentorSession = () => {
             <div className="flex-1 ml-20 h-screen">
                 <button onClick={openModal} className="btn mx-5 my-3">Create Session</button>
                 <Table columns={columns} data={mentorSessionList} />
-                <CreateSession isOpen={showModal}
-                    onRequestClose={closeModal} />
+                <CreateEditSession isOpen={showModal}
+                    onRequestClose={closeModal} isEdit={false} id={null} />
             </div>
         </div>
     );

@@ -1,13 +1,17 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import ReactModal from 'react-modal';
-import Select from "react-select"
+import Select from "react-select";
+import { useDispatch } from 'react-redux'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import useInputFormField from 'shared/hooks/useInputFormField';
 import useBatchSelector from "shared/hooks/useBatchSelector";
 import useTeamSelector from "shared/hooks/useTeamSelector";
 import useWeekSelector from "shared/hooks/useWeekSelector";
 import useSessionSelector from "shared/hooks/useSessionSelector"
-import { apiCreateSession } from "../../api/api"
+import { mentorSessionLoadFlow } from "../../middleware/mentorSessionSlice";
+import { apiGetSession, apiEditSession, apiCreateSession } from "../../api/api";
 
 ReactModal.setAppElement('#root');
 
@@ -24,19 +28,34 @@ const customStyles = {
     },
 };
 
-const CreateSession = (props) => {
+const CreateEditSession = (props) => {
+    const dispatch = useDispatch()
     const startdate = useInputFormField();
     const duration = useInputFormField();
-    const ajanda = useInputFormField();
-    const { batch, handleChangeBatches, batcheOptions } = useBatchSelector();
+    var ajanda = useInputFormField();
+    var { batch, handleChangeBatches, batcheOptions } = useBatchSelector();
     const { team, handleChangeTeam, teamOptions } = useTeamSelector();
     const { week, handleChangeWeek, weekOptions } = useWeekSelector();
     const { session, handleChangeSession, sessionOptions } = useSessionSelector();
 
+    useEffect(async () => {
+        if (props.isEdit) {
+            const session = await apiGetSession(props.id);
+            handleChangeBatches({ value: session.batch, label: session.batch })
+            handleChangeTeam({ value: session.team, label: session.team })
+            handleChangeWeek({ value: session.week, label: session.week })
+            handleChangeSession({ value: session.session, label: session.session })
+            ajanda.initialValue(session.ajanda)
+            startdate.initialValue(session.datetime)
+            duration.initialValue(session.duration)
+        }
+    }, [])
+
     const handleSubmit = async (event) => {
         event.preventDefault();
+        const user = JSON.parse(window.localStorage.getItem('user'))
         const sessionData = {
-            mentorid: "",
+            mentorid: user.uid,
             week: week.value,
             session: session.value,
             batch: batch.value,
@@ -47,9 +66,24 @@ const CreateSession = (props) => {
             notes: "",
             feedback: ""
         }
-        console.log(sessionData)
-        // await CreateSession(sessionData);
+        var resp;
+        if (props.isEdit)
+            resp = await apiEditSession(sessionData, props.id);
+        else
+            resp = await apiCreateSession(sessionData);
+        if (resp.status == 200) {
+            if (props.isEdit)
+                toast.success("Successfully edited session")
+            else
+                toast.success("Successfully created session")
+        } else {
+            if (props.isEdit)
+                toast.warning("Failed to edit session")
+            else
+                toast.warning("Failed to create session")
+        }
         props.onRequestClose();
+        dispatch(mentorSessionLoadFlow())
     }
     return (
         <div  >
@@ -67,6 +101,26 @@ const CreateSession = (props) => {
                             <label className="block text-gray-700 text-sm font-bold mb-1">Select Batch</label>
                             <Select
                                 className=""
+                                value={batch}
+                                onChange={handleChangeBatches}
+                                options={batcheOptions}
+                                isMulti={false}
+                            />
+                        </div>
+                        <div className="mb-2">
+                            <label className="block text-gray-700 text-sm font-bold mb-1">Select Team</label>
+                            <Select
+                                className=""
+                                value={team}
+                                onChange={handleChangeTeam}
+                                options={teamOptions}
+                                isMulti={false}
+                            />
+                        </div>
+                        <div className="mb-2">
+                            <label className="block text-gray-700 text-sm font-bold mb-1">Select Week</label>
+                            <Select
+                                className=""
                                 value={week}
                                 onChange={handleChangeWeek}
                                 options={weekOptions}
@@ -74,32 +128,12 @@ const CreateSession = (props) => {
                             />
                         </div>
                         <div className="mb-2">
-                            <label className="block text-gray-700 text-sm font-bold mb-1">Select Batch</label>
+                            <label className="block text-gray-700 text-sm font-bold mb-1">Select Session</label>
                             <Select
                                 className=""
                                 value={session}
                                 onChange={handleChangeSession}
                                 options={sessionOptions}
-                                isMulti={false}
-                            />
-                        </div>
-                        <div className="mb-2">
-                            <label className="block text-gray-700 text-sm font-bold mb-1">Select Batch</label>
-                            <Select
-                                className=""
-                                value={batch}
-                                onChange={handleChangeBatches}
-                                options={batcheOptions}
-                                isMulti={false}
-                            />
-                        </div>
-                        <div class="mb-2">
-                            <label className="block text-gray-700 text-sm font-bold mb-1">Select Team</label>
-                            <Select
-                                className=""
-                                value={team}
-                                onChange={handleChangeTeam}
-                                options={teamOptions}
                                 isMulti={false}
                             />
                         </div>
@@ -148,8 +182,9 @@ const CreateSession = (props) => {
                     </form>
                 </div>
             </ReactModal>
+            <ToastContainer />
         </div>
     );
 }
 
-export default CreateSession;
+export default CreateEditSession;

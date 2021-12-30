@@ -37,8 +37,8 @@ export const mentorProfileLoadFlow = () => {
     return async (dispatch) => {
         dispatch(mentorProfileLoading())
         try {
-            const user = window.localStorage.getItem('user')
-            const mentorProfile = await apiGetMentorProfile("raghu")
+            const user = JSON.parse(window.localStorage.getItem('user'))
+            const mentorProfile = await apiGetMentorProfile(user.uid)
             dispatch(mentorProfileLoadSuccess(mentorProfile[0]))
         } catch (error) {
             console.log(error)

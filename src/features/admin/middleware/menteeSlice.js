@@ -22,7 +22,7 @@ const menteeSlice = createSlice({
             var options = new Set()
             payload.map(mentee => {
                 options.add(mentee.batch)
-            })   
+            })
             state.batcheList = options;
         },
         menteeLoadFailure: (state, { payload }) => {
@@ -71,6 +71,24 @@ export const menteeFilterFlow = (filter) => {
             var mentee = await apiGetAllmentee();
             if (filter !== "All")
                 mentee = mentee.filter(ele => ele.batch === filter)
+            dispatch(menteeLoadSuccess(mentee))
+        } catch (error) {
+            dispatch(menteeLoadFailure())
+        }
+    }
+}
+
+export const menteeSortFlow = (isSort) => {
+    return async (dispatch) => {
+        dispatch(menteeLoading())
+        try {
+            var mentee = await apiGetAllmentee();
+            if (isSort) {
+                mentee = mentee.sort((a, b) => a.email.localeCompare(b.email))
+                mentee.reverse()
+            } else {
+                mentee = mentee.sort((a, b) => a.email.localeCompare(b.email))
+            }
             dispatch(menteeLoadSuccess(mentee))
         } catch (error) {
             dispatch(menteeLoadFailure())

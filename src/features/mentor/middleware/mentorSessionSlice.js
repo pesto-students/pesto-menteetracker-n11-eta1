@@ -19,7 +19,7 @@ const mentorSessionSlice = createSlice({
             state.error = null
             state.mentorSessionList = payload
         },
-        mentorSessionLoadFailure: (state, {payload}) => {
+        mentorSessionLoadFailure: (state, { payload }) => {
             state.loading = false
             state.error = payload
         }
@@ -36,8 +36,8 @@ export const mentorSessionLoadFlow = () => {
     return async (dispatch) => {
         dispatch(mentorSessionLoading())
         try {
-            const user = window.localStorage.getItem('user')
-            const mentorSession = await apiGetAllMentorSession("raghu")
+            const user = JSON.parse(window.localStorage.getItem('user'))
+            const mentorSession = await apiGetAllMentorSession(user.uid)
             dispatch(mentorSessionLoadSuccess(mentorSession))
         } catch (error) {
             console.log(error)

@@ -24,8 +24,34 @@ export const apiGetMentorProfile = async (mentorid) => {
 //create session
 export const apiCreateSession = async (sessionData) => {
     const response = await axiosInstance.post(
-        "/api/mentor/profile/",
+        "/api/mentor/createsession",
         sessionData
     )
+    return response
+}
+
+//edit session
+export const apiEditSession = async (sessionData, sessionId) => {
+    const response = await axiosInstance.post(
+        "/api/mentor/updatesession/" + sessionId,
+        sessionData
+    )
+    return response
+}
+
+//get session
+export const apiGetSession = async (sessionId) => {
+    const response = await axiosInstance.get(
+        "/api/mentor/getsession/" + sessionId,
+    )
     return response.data
+}
+
+//edit profile
+export const apiUpdateProfile = async (mentorData, profileId) => {
+    const response = await axiosInstance.post(
+        "/api/mentor/updatprofile/" + profileId,
+        mentorData
+    );
+    return response;
 }

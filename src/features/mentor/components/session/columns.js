@@ -1,5 +1,9 @@
 
 export const columns = [
+    // {
+    //     Header: 'Id',
+    //     accessor: '_id',
+    // },
     {
         Header: 'Batch',
         accessor: 'batch',
@@ -9,7 +13,19 @@ export const columns = [
         accessor: 'team',
     },
     {
+        Header: 'Duration (Min)',
+        accessor: 'duration',
+    },
+    {
         Header: 'Datetime',
         accessor: 'datetime',
+    },
+    {
+        Header: 'View',
+        // accessor: '',
+    },
+    {
+        Header: 'Edit',
+        // accessor: '',
     },
 ]

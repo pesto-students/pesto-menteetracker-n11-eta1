@@ -2,12 +2,13 @@ import { createSlice } from '@reduxjs/toolkit'
 import { getAuth, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
 
 import firebaseApp from '../../../config/firebase';
-import { authCheckerLoadFlow } from '../middleware/authCheckerSlice'
+import { apiGetUser } from "../api/api"
 
 const auth = getAuth(firebaseApp);
 
 export const initialState = {
-    authError: null
+    authError: null,
+    user: null,
 }
 
 const signInSlice = createSlice({
@@ -17,10 +18,12 @@ const signInSlice = createSlice({
         signInError: (state, { payload }) => {
             console.log("sign in failure", payload)
             state.authError = payload
+            state.user = null
         },
-        signInSuccess: (state) => {
+        signInSuccess: (state,  { payload }) => {
             console.log("sign in success")
             state.authError = null
+            state.user = payload
         },
 
     }
@@ -39,12 +42,13 @@ export const signInWithEmailPasswordLoadFlow = (credentials) => {
                 auth,
                 credentials.email,
                 credentials.password
-            ).then((res) => {
-                console.log(res)
-                const user = {uid: res.user.uid, email: res.user.email}
-                window.localStorage.setItem('user', user)
-                dispatch(signInSuccess())
-                dispatch(authCheckerLoadFlow())
+            ).then( async (res)  =>  {
+                // console.log(res)
+                // const user = {uid: res.user.uid, email: res.user.email}
+                const user = await apiGetUser(res.user.uid)
+                console.log(user)
+                window.localStorage.setItem('user', JSON.stringify(user))
+                dispatch(signInSuccess(user))
             }).catch((err) => {
                 console.log(err.code)
                 dispatch(signInError(err.code))

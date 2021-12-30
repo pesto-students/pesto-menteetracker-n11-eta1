@@ -6,7 +6,11 @@ const useInputFormField = () => {
         setValue(e.target.value)
     }
 
-    return { value, onChange }
+    const initialValue = (val) => {
+        setValue(val)
+    }
+
+    return { value, onChange, initialValue }
 }
 
 export default useInputFormField;
