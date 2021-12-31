@@ -1,13 +1,16 @@
 import React from 'react';
 
-import SideNavBar from "../side-nav-bar/SideNavBar"
+import SideNavBar from "../side-nav-bar/SideNavBar";
+import PieChart from "./PieChart";
+import BarChart from "./BarChart"
 
 const MentorDashboard = () => {
     return (
-        <div className="flex bg-gray-100">
+        <div className="flex bg-gray-100 ">
             <SideNavBar />
-            <main className="bg-gray-100 flex-1 h-screen">
-                <h5 className=" ml-60 text-1xl">Mentor Dashboard</h5>
+            <main className="flex h-screen ml-52 mt-40">
+                <PieChart />
+                <BarChart />
             </main>
         </div>
     );

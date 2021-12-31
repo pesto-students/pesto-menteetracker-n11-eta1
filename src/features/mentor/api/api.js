@@ -55,3 +55,23 @@ export const apiUpdateProfile = async (mentorData, profileId) => {
     );
     return response;
 }
+
+// dashboards
+export const apiGetMentorBatchsBarChart = async () => {
+    const mentorId = "8LPM3YUWRkUHiIA08qGbXfFCvKO2"
+    const response = await axiosInstance.get(
+        "/api/mentor/barchart/" + mentorId,
+    )
+    var res = {}
+    response.data.map(ele => {
+        if (ele.mentorid in res) {
+            const totalDuration = res[ele.batch] + ele.duration;
+            res[ele.batch] = totalDuration;
+        } else {
+            res[ele.batch] = ele.duration;
+        }
+    });
+    const data = { batches: Object.keys(res), durations: Object.values(res) };
+    console.log(data)
+    return data;
+}

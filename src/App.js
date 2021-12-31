@@ -33,20 +33,25 @@ const App = () => {
     <Routes>
       <Route path="/" element={<LandingPage />} />
       <Route path="/signin" element={<SignIn />} />
-      <Route path="/signup" element={<SignUp />} />
 
       <Route path="/admin/dashboard"
         element={<PrivateRoute roles={["admin"]} component={AdminDashboard} />} />
-      <Route path="/admin/mentee" element={<AdminMentee />} />
-      <Route path="/admin/mentor" element={<AdminMentor />} />
+      <Route path="/admin/mentee"
+        element={<PrivateRoute roles={["admin"]} component={AdminMentee} />} />
+      <Route path="/admin/mentor"
+        element={<PrivateRoute roles={["admin"]} component={AdminMentor} />} />
       <Route path="/admin/team" element={<AdminTeam />} />
 
       <Route path="/mentor/dashboard"
         element={<PrivateRoute roles={["mentor"]} component={MentorDashboard} />} />
-      <Route path="/mentor/session" element={<MentorSession />} />
-      <Route path="/mentor/team" element={<MentorTeam />} />
-      <Route path="/mentor/profile" element={<MentorProfile />} />
-      <Route path="/mentor/session/:id" element={<SingleSessionView />} />
+      <Route path="/mentor/session"
+        element={<PrivateRoute roles={["mentor"]} component={MentorSession} />} />
+      <Route path="/mentor/team"
+        element={<PrivateRoute roles={["mentor"]} component={MentorTeam} />} />
+      <Route path="/mentor/profile"
+        element={<PrivateRoute roles={["mentor"]} component={MentorProfile} />} />
+      <Route path="/mentor/session/:id"
+        element={<PrivateRoute roles={["mentor"]} component={SingleSessionView} />} />
 
       <Route path="mentee/*" element={<Mentee />} >
         {/* <Route path="dashboard" element={<Hello />} /> */}

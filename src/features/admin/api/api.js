@@ -1,6 +1,6 @@
 import axiosInstance from '../../../config/axios'
 
-export const apiGetAllmentee= async () => {
+export const apiGetAllmentee = async () => {
     const response = await axiosInstance.get(
         "/api/admin/allmentees",
     )
@@ -56,4 +56,36 @@ export const apiCreateTeam = async (teamData) => {
         teamData
     )
     return response
+}
+
+export const apiGetMentorPieChart = async (mentorid) => {
+    const response = await axiosInstance.get(
+        "/api/admin/piechart/" + mentorid,
+    )
+    const durations = response.data.map(ele => ele.duration);
+    const teams = response.data.map(ele => ele.team);
+    return { durations, teams }
+}
+
+export const apiGetMentorBarChart = async () => {
+    const response = await axiosInstance.get(
+        "/api/admin/barchart",
+    )
+    var res = {}
+    response.data.sessions.map(ele => {
+        if (ele.mentorid in res) {
+            const totalDuration = res[ele.mentorid] + ele.duration;
+            res[ele.mentorid] = totalDuration;
+        } else {
+            res[ele.mentorid] = ele.duration;
+        }
+    });
+    const mentors = Object.keys(res).map(ele => {
+        console.log(ele)
+        const mentor = response.data.mentors.find(o => o.uid === ele);
+        return mentor.name
+    })
+    const data = { mentors: mentors, durations: Object.values(res) };
+    console.log(data)
+    return data;
 }
