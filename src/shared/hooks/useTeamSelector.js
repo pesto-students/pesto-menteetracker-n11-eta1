@@ -3,9 +3,9 @@ import { useState, useEffect } from 'react';
 import { apiGetAlladminTeam } from "features/admin/api/api"
 
 const useTeamSelector = () => {
-    
-    const [ teamOptions, setTeamOptions] = useState([]);
-    const [ team, setTeams] = useState(null)
+
+    const [teamOptions, setTeamOptions] = useState([]);
+    const [team, setTeams] = useState(null)
 
     useEffect(() => {
         renderAllTeams();
@@ -17,7 +17,7 @@ const useTeamSelector = () => {
 
     const renderAllTeams = async () => {
         const data = await apiGetAlladminTeam()
-        const mapData = data.map(ele => {
+        const mapData = data.teams.map(ele => {
             return { value: ele.name, label: ele.name }
         })
         setTeamOptions(mapData)

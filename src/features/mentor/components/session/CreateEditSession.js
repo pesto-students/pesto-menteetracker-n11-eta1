@@ -12,19 +12,20 @@ import useWeekSelector from "shared/hooks/useWeekSelector";
 import useSessionSelector from "shared/hooks/useSessionSelector"
 import { mentorSessionLoadFlow } from "../../middleware/mentorSessionSlice";
 import { apiGetSession, apiEditSession, apiCreateSession } from "../../api/api";
+import CloseIcon from "shared/components/close/CloseIcon";
 
 ReactModal.setAppElement('#root');
 
 const customStyles = {
     content: {
-        top: '40%',
+        top: '45%',
         left: '50%',
         right: 'auto',
         bottom: 'auto',
         marginRight: '-50%',
         transform: 'translate(-50%, -50%)',
         width: "400px",
-        height: "500px"
+        height: "540px"
     },
 };
 
@@ -72,8 +73,10 @@ const CreateEditSession = (props) => {
         else
             resp = await apiCreateSession(sessionData);
         if (resp.status == 200) {
-            if (props.isEdit)
+            console.log("props.isEdit : ", props.isEdit)
+            if (props.isEdit) {
                 toast.success("Successfully edited session")
+            }
             else
                 toast.success("Successfully created session")
         } else {
@@ -93,11 +96,11 @@ const CreateEditSession = (props) => {
             >
                 <div className="flex justify-between">
                     <h1 className="font-bold text-green-500">Create Session</h1>
-                    <button className="text-2xl font-bold text-red-500" onClick={props.onRequestClose}>X</button>
+                    <CloseIcon handleClick={props.onRequestClose} />
                 </div>
                 <div className="bg-white">
                     <form onSubmit={handleSubmit} >
-                        <div className="mb-2">
+                        <div className="mb-3">
                             <label className="block text-gray-700 text-sm font-bold mb-1">Select Batch</label>
                             <Select
                                 className=""
@@ -107,7 +110,7 @@ const CreateEditSession = (props) => {
                                 isMulti={false}
                             />
                         </div>
-                        <div className="mb-2">
+                        <div className="mb-3">
                             <label className="block text-gray-700 text-sm font-bold mb-1">Select Team</label>
                             <Select
                                 className=""
@@ -117,7 +120,7 @@ const CreateEditSession = (props) => {
                                 isMulti={false}
                             />
                         </div>
-                        <div className="mb-2">
+                        <div className="mb-3">
                             <label className="block text-gray-700 text-sm font-bold mb-1">Select Week</label>
                             <Select
                                 className=""
@@ -127,7 +130,7 @@ const CreateEditSession = (props) => {
                                 isMulti={false}
                             />
                         </div>
-                        <div className="mb-2">
+                        <div className="mb-3">
                             <label className="block text-gray-700 text-sm font-bold mb-1">Select Session</label>
                             <Select
                                 className=""
@@ -137,7 +140,7 @@ const CreateEditSession = (props) => {
                                 isMulti={false}
                             />
                         </div>
-                        <div className="mb-2 flex space-x-3">
+                        <div className="mb-3 flex space-x-3">
                             <div>
                                 <label className="block text-gray-700 text-sm font-bold mb-1" htmlFor="title">Start Date</label>
                                 <input
@@ -182,7 +185,6 @@ const CreateEditSession = (props) => {
                     </form>
                 </div>
             </ReactModal>
-            <ToastContainer />
         </div>
     );
 }

@@ -19,7 +19,7 @@ const mentorTeamSlice = createSlice({
             state.error = null
             state.mentorTeamList = payload
         },
-        mentorTeamLoadFailure: (state, {payload}) => {
+        mentorTeamLoadFailure: (state, { payload }) => {
             state.loading = false
             state.error = payload
         }
@@ -37,8 +37,8 @@ export const mentorTeamLoadFlow = () => {
     return async (dispatch) => {
         dispatch(mentorTeamLoading())
         try {
-            const user = window.localStorage.getItem('user')
-            const mentorTeam = await apiGetAllmentorTeam("raghu")
+            const user = JSON.parse(window.localStorage.getItem('user'))
+            const mentorTeam = await apiGetAllmentorTeam(user.email)
             dispatch(mentorTeamLoadSuccess(mentorTeam))
         } catch (error) {
             console.log(error)

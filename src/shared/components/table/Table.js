@@ -40,7 +40,7 @@ export default function Table({ columns, data }) {
               {headerGroups.map(headerGroup => (
                 <tr {...headerGroup.getHeaderGroupProps()}>
                   {headerGroup.headers.map(column => (
-                    <th {...column.getHeaderProps()} className="px-5 py-3 border-b-2 border-gray-200 bg-gray-200 text-left text-1xl font-semibold text-gray-600 uppercase tracking-wider">
+                    <th {...column.getHeaderProps()} className="text-center px-3 py-3 border-b-2 border-gray-200 bg-gray-200 text-1xl font-semibold text-gray-600 uppercase tracking-wider">
                       {column.render("Header")}</th>
                   ))}
                 </tr>
@@ -51,9 +51,12 @@ export default function Table({ columns, data }) {
                 prepareRow(row);
                 return (
                   <tr {...row.getRowProps()}>
-                    {row.cells.map(cell => {
-                      return <td className="px-5 py-5 border-b border-gray-200 bg-white text-lg"
-                       {...cell.getCellProps()}>{cell.render("Cell")}</td>;
+                    {row.cells.map( (cell, index) => {
+                      if (index !== 3)
+                        return <td className="text-center uppercase text-indigo-900 px-5 py-2 border-b border-gray-200 bg-white text-lg"
+                          {...cell.getCellProps()}>{cell.render("Cell")}</td>;
+                      return <td className="text-center  text-indigo-900 px-5 py-2 border-b border-gray-200 bg-white text-lg"
+                        {...cell.getCellProps()}>{cell.render("Cell")}</td>;
                     })}
                   </tr>
                 );

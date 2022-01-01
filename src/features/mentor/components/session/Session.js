@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux';
+import { ToastContainer } from 'react-toastify';
 
 import SideNavBar from "../side-nav-bar/SideNavBar"
 import { mentorSessionSelector, mentorSessionLoadFlow } from "../../middleware/mentorSessionSlice"
@@ -21,11 +22,12 @@ const MentorSession = () => {
         <div className="flex bg-gray-100">
             <SideNavBar />
             <div className="flex-1 ml-20 h-screen">
-                <button onClick={openModal} className="btn mx-5 my-3">Create Session</button>
+                <button onClick={openModal} className="btn mx-10 mt-7">Create Session</button>
                 <Table columns={columns} data={mentorSessionList} />
                 <CreateEditSession isOpen={showModal}
                     onRequestClose={closeModal} isEdit={false} id={null} />
             </div>
+            <ToastContainer />
         </div>
     );
 }

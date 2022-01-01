@@ -13,16 +13,36 @@ const MentorProfile = () => {
 
     useEffect(() => {
         dispatch(mentorProfileLoadFlow())
-    }, [mentor])
-
+    }, [])
+    console.log(mentor)
     return (
         <div className="flex bg-gray-100">
             <SideNavBar />
             { mentor &&
-                <div className="flex-1 h-screen ml-40">
-                    <button onClick={openModal} className="btn mx-5 my-3">Create Session</button>
-                    <div>{mentor.uid}</div>
-                    <div>{mentor.email}</div>
+                <div className="flex-1 h-screen ml-60 mt-5">
+                    <button onClick={openModal} className="btn my-3">Edit Profile</button>
+                    <div className="mt-20 bg-white rounded-lg w-7/12 p-3 shadow-lg">
+                        <div className="flex space-x-5">
+                            <div className="image h-32 w-32">
+                                <img
+                                    src="https://lavinephotography.com.au/wp-content/uploads/2017/01/PROFILE-Photography-112.jpg"
+                                    alt="" />
+
+                            </div>
+                            <div>
+                                <div className="grid grid-cols-2 space-x-7">
+                                    <div class="flex">
+                                        <div class="py-2 font-semibold ">Email :</div>
+                                        <div class="py-2 px-3">{mentor.email}</div>
+                                    </div>
+                                    <div class="flex">
+                                        <div class="py-2 font-semibold ">Email :</div>
+                                        <div class="py-2 px-3">{mentor.email}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             }
             <div>
@@ -34,3 +54,25 @@ const MentorProfile = () => {
 }
 
 export default MentorProfile;
+
+/*
+    return (
+        <div className="flex bg-gray-100">
+            <SideNavBar />
+            { mentor &&
+                <div className="flex-1 h-screen ml-60 mt-5">
+                    <button onClick={openModal} className="btn my-3">Edit Profile</button>
+                    <div className="mt-20">
+
+                        <div>{mentor.uid}</div>
+                        <div>{mentor.email}</div>
+                    </div>
+                </div>
+            }
+            <div>
+                <EditProfile isOpen={showModal}
+                    onRequestClose={closeModal} />
+            </div>
+        </div>
+    );
+*/

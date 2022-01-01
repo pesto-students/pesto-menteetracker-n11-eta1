@@ -1,12 +1,12 @@
 import "./style.css";
 import LogoSideIcon from "./logoSide.js";
 import { HiHome } from "react-icons/hi";
-import { RiGroupFill } from "react-icons/ri";
-import { RiTrelloFill } from "react-icons/ri"
+import { FaCalendarAlt } from "react-icons/fa";
+import { FaUsers } from "react-icons/fa";
 import { BsFillPersonFill } from "react-icons/bs";
 import { Link } from "react-router-dom";
 
-function SideNavBar () {
+function SideNavBar() {
     return (
         <nav className="navbar">
             <ul className="navbar-nav">
@@ -24,13 +24,13 @@ function SideNavBar () {
                 </Link>
                 <Link to="/mentor/session">
                     <li className="nav-item nav-link">
-                        <RiGroupFill className="fa-primary" size={70} />
+                        <FaCalendarAlt className="fa-primary h-6 w-6" size={70} />
                         <span className="link-text">Session</span>
                     </li>
                 </Link>
                 <Link to="/mentor/team">
                     <li className="nav-item nav-link">
-                        <RiTrelloFill className="fa-primary" size={70} />
+                        <FaUsers className="fa-primary" size={70} />
                         <span className="link-text">Team</span>
                     </li>
                 </Link>

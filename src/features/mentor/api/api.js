@@ -9,7 +9,7 @@ export const apiGetAllMentorSession = async (mentorid) => {
 
 export const apiGetAllmentorTeam = async (mentorid) => {
     const response = await axiosInstance.get(
-        "/api/mentor/allsessions/" + mentorid,
+        "/api/mentor/allteams/" + mentorid,
     )
     return response.data
 }

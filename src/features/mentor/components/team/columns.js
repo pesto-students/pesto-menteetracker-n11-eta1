@@ -1,6 +1,10 @@
 
 export const columns = [
     {
+        Header: 'Start Date',
+        accessor: 'startdate',
+    },
+    {
         Header: 'Batch',
         accessor: 'batch',
     },
@@ -9,7 +13,7 @@ export const columns = [
         accessor: 'team',
     },
     {
-        Header: 'Start Date',
-        accessor: 'datetime',
+        Header: 'Mentee',
+        accessor: 'mentee',
     },
 ]
