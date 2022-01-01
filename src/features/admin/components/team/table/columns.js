@@ -2,6 +2,10 @@ import { ColumnFilter } from "./ColumnFilter"
 
 export const columns = [
     {
+        Header: 'StartDate',
+        accessor: 'startdate',
+    },
+    {
         Header: 'Batch',
         accessor: 'batch',
         Filter: ColumnFilter,
@@ -18,8 +22,4 @@ export const columns = [
         Header: 'Mentee',
         accessor: 'mentee',
     },
-    // {
-    //     Header: 'username',
-    //     accessor: 'username',
-    // },
 ]

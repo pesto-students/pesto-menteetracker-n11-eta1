@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import ReactModal from 'react-modal';
-import { batch, useDispatch, useSelector } from 'react-redux'
-import Select from "react-select"
+import { useDispatch, useSelector } from 'react-redux'
 
 import useInputFormField from 'shared/hooks/useInputFormField';
 import { signUpSelector, createUserWithEmailPasswordLoadFlow } from 'features/auth/middleware/signUpSlice'
-import { apiGetAllBatches, apiGetAllTeams } from "../../api/api"
+import CloseIcon from "shared/components/close/CloseIcon";
 
 ReactModal.setAppElement('#root');
 
@@ -44,7 +43,7 @@ const CreateMentor= (props) => {
             >
                 <div className="flex justify-between">
                     <h1 className="font-bold text-green-500">Create Mentor</h1>
-                    <button className="text-2xl font-bold text-red-500" onClick={props.onRequestClose}>X</button>
+                    <CloseIcon handleClick={props.onRequestClose} />
                 </div>
                 <div className="">
                     <form onSubmit={handleSubmit} >

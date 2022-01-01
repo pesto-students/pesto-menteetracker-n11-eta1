@@ -9,7 +9,8 @@ import { mentorReducer } from "../features/admin/middleware/mentorSlice"
 import { adminTeamReducer } from "../features/admin/middleware/adminTeamSlice"
 import { mentorSessionReducer } from "../features/mentor/middleware/mentorSessionSlice"
 import { mentorTeamReducer } from "../features/mentor/middleware/mentorTeamSlice"
-import { mentorProfileReducer } from "../features/mentor/middleware/mentorProfileSlice"
+import { mentorProfileReducer } from "../features/mentor/middleware/mentorProfileSlice";
+import { batchReducer } from "../features/admin/middleware/batchSlice";
 
 
 const confStore = configureStore({
@@ -24,6 +25,7 @@ const confStore = configureStore({
         mentorSession: mentorSessionReducer,
         mentorTeam: mentorTeamReducer,
         mentorProfile: mentorProfileReducer,
+        batch: batchReducer,
     },
 
 });

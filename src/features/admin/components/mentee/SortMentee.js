@@ -36,7 +36,14 @@ const SortMentee = () => {
     }
 
     return (
-        <div className="mt-2 pl-5">{getMyComponent()}</div>
+        <div className="flex mt-2 pl-5 space-x-4">
+            <h1 className="block text-gray-700 text-md font-bold">
+                Sort
+            </h1>
+            <div className="mt-1">
+            {getMyComponent()}
+            </div>
+        </div>
     )
 }
 

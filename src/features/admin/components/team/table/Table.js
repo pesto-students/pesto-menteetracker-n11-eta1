@@ -41,9 +41,9 @@ export default function Table({ columns, data }) {
                 <tr {...headerGroup.getHeaderGroupProps()}>
                   {headerGroup.headers.map(column => (
                     <th {...column.getHeaderProps()} className="px-5 py-3 border-b-2 border-gray-200 bg-gray-200 text-left text-1xl font-semibold text-gray-600 uppercase tracking-wider">
-                     <div>{column.render("Header")} </div>
-                     {/* <div>{column.canFilter ? column.render('Filter') : null}</div> */}
-                      </th>
+                      <div>{column.render("Header")} </div>
+                      {/* <div>{column.canFilter ? column.render('Filter') : null}</div> */}
+                    </th>
                   ))}
                 </tr>
               ))}
@@ -53,8 +53,20 @@ export default function Table({ columns, data }) {
                 prepareRow(row);
                 return (
                   <tr {...row.getRowProps()}>
-                    {row.cells.map(cell => {
-                      return <td className="px-5 py-5 border-b border-gray-200 bg-white text-lg"
+                    {row.cells.map((cell, index) => {
+                      if (index === 0)
+                        return <td className=" text-indigo-700 px-5 py-5 border-b border-gray-200 bg-white text-lg"
+                          {...cell.getCellProps()}>{cell.render("Cell")}</td>
+                      if (index === 1)
+                        return <td className="uppercase  text-green-700 px-5 py-5 border-b border-gray-200 bg-white text-lg"
+                          {...cell.getCellProps()}>{cell.render("Cell")}</td>
+                      if (index === 2)
+                        return <td className="uppercase text-indigo-500 px-5 py-5 border-b border-gray-200 bg-white text-lg"
+                          {...cell.getCellProps()}>{cell.render("Cell")}</td>
+                      if (index == 3)
+                        return <td className="px-5 text-green-700 py-5 border-b border-gray-200 bg-white text-lg"
+                          {...cell.getCellProps()}>{cell.render("Cell")}</td>;
+                      return <td className="px-5 text-indigo-500 py-5 border-b border-gray-200 bg-white text-lg"
                         {...cell.getCellProps()}>{cell.render("Cell")}</td>;
                     })}
                   </tr>

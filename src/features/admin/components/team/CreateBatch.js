@@ -5,7 +5,8 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import useInputFormField from 'shared/hooks/useInputFormField';
-import { apiCreateBatch } from "../../api/api"
+import { apiCreateBatch } from "../../api/api";
+import CloseIcon from "shared/components/close/CloseIcon";
 
 const reactModalCustomStyles = {
     content: {
@@ -45,12 +46,12 @@ const CreateBatch = (props) => {
                 style={reactModalCustomStyles}
             >
                 <div className="">
-                    <div className="flex justify-between">
+                    <div className="flex justify-between mb-3">
                         <h1 className="font-bold text-green-500">Create Batch</h1>
-                        <button className="text-2xl font-bold text-red-500" onClick={props.onRequestClose}>X</button>
+                        <CloseIcon handleClick={props.onRequestClose} />
                     </div>
                     <form onSubmit={handleSubmit}>
-                        <div className="mb-2">
+                        <div className="mb-4">
                             <label className="block text-gray-700 text-sm font-bold mb-1" htmlFor="title">Start Date</label>
                             <input
                                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -62,7 +63,7 @@ const CreateBatch = (props) => {
                                 required
                             />
                         </div>
-                        <div className="mb-2">
+                        <div className="mb-3">
                             <label className="block text-gray-700 text-sm font-bold mb-1" htmlFor="title">Batch Name</label>
                             <input
                                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"

@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import ApexCharts from 'apexcharts';
+import ReactApexChart from "react-apexcharts";
 
-import { apiGetMentorPieChart } from "../../api/api"
+import { apiGetMentorPieChart } from "../../api/api";
 
-const PieChart = () => {
-    var options = null;
+const PieChart = ({ mentorId }) => {
+    const [data, setData] = useState(null)
 
     useEffect(async () => {
-        const res = await apiGetMentorPieChart("8LPM3YUWRkUHiIA08qGbXfFCvKO2")
-        options = {
-            series: res.durations,
+        console.log("piechart : ", mentorId)
+        const res = await apiGetMentorPieChart(mentorId)
+        const options = {
             chart: {
                 width: 380,
                 type: 'pie',
@@ -27,12 +27,13 @@ const PieChart = () => {
                 }
             }]
         };
-        var chart = new ApexCharts(document.querySelector('#piechart'), options)
-        chart.render()
-    }, [])
-
+        setData({ options, res })
+    }, [mentorId])
+    console.log(data)
     return (
-        <div id="piechart" className="w-60 h-60">
+        <div id="chart" className="w-60 h-60">
+            <ReactApexChart options={data ? data.options : {}} series={data ? data.res.durations : []}
+                type="pie" width={380} />
         </div>
     )
 }

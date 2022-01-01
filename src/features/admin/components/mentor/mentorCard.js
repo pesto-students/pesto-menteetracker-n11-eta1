@@ -1,13 +1,13 @@
 import React from 'react';
 
-import developerIcon from 'assets/developer.png';
+import mentorIcon from 'assets/training.png';
 
 const MentorCard = ({ mentor }) => {
     return (
         <div className="card flex h-32 ">
-            <img src={developerIcon} alt="developer" class="w-32 h-32 object-cover p-3" />
+            <img src={mentorIcon} alt="mentor" class="w-24 h-24 object-cover p-3" />
             <div className="flex flex-col  px-3 py-10">
-                <div>{mentor.email} </div>
+                <div className="mr-3">{mentor.email} </div>
             </div>
         </div>
     );

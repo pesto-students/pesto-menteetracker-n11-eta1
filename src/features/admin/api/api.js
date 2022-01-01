@@ -81,11 +81,9 @@ export const apiGetMentorBarChart = async () => {
         }
     });
     const mentors = Object.keys(res).map(ele => {
-        console.log(ele)
         const mentor = response.data.mentors.find(o => o.uid === ele);
         return mentor.name
     })
     const data = { mentors: mentors, durations: Object.values(res) };
-    console.log(data)
     return data;
 }

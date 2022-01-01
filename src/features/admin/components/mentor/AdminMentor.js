@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 
 import SideNavBar from "../side-nav-bar/SideNavBar"
-import { mentorSelector, mentorLoadFlow } from "../../middleware/mentorSlice"
+import { mentorSelector, mentorLoadFlow } from "../../middleware/mentorSlice";
 import MentorCard from "./mentorCard"
 import  CreateMentor  from "./CreateMentor"
 
@@ -29,7 +29,7 @@ const AdminMentor = () => {
             <SideNavBar></SideNavBar>
             <main className="h-screen">
                 <div >
-                    <button onClick={openModal} className="btn mx-5 my-3">Add Mentor</button>
+                    <button onClick={openModal} className="btn mx-10 my-3">Add Mentor</button>
                     <div className="m-10 grid grid-cols-3 gap-7">
                         {mentorList?.map(mentor => {
                             return <MentorCard mentor={mentor} key={mentor._id} />

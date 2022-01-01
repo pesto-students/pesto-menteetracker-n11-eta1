@@ -18,12 +18,15 @@ const menteeSlice = createSlice({
         menteeLoadSuccess: (state, { payload }) => {
             state.loading = false
             state.error = null
-            state.menteeList = payload
-            var options = new Set()
-            payload.map(mentee => {
-                options.add(mentee.batch)
-            })
-            state.batcheList = options;
+            console.log("payload :", payload)
+            state.menteeList = payload.mentee
+            if (!payload.isFilter) {
+                var options = new Set()
+                payload.mentee?.map(mentee => {
+                    options.add(mentee.batch)
+                })
+                state.batcheList = [...options];
+            }
         },
         menteeLoadFailure: (state, { payload }) => {
             state.loading = false
@@ -44,7 +47,7 @@ export const menteeLoadFlow = () => {
         dispatch(menteeLoading())
         try {
             const mentee = await apiGetAllmentee()
-            dispatch(menteeLoadSuccess(mentee))
+            dispatch(menteeLoadSuccess({ mentee, isFilter: false }))
         } catch (error) {
             dispatch(menteeLoadFailure())
         }
@@ -57,7 +60,7 @@ export const menteeSearchFlow = (searchedStr) => {
         try {
             var mentee = await apiGetAllmentee();
             mentee = mentee.filter(ele => ele.email.toLowerCase().startsWith(searchedStr.toLowerCase()))
-            dispatch(menteeLoadSuccess(mentee))
+            dispatch(menteeLoadSuccess({ mentee, isFilter: true }))
         } catch (error) {
             dispatch(menteeLoadFailure())
         }
@@ -71,7 +74,7 @@ export const menteeFilterFlow = (filter) => {
             var mentee = await apiGetAllmentee();
             if (filter !== "All")
                 mentee = mentee.filter(ele => ele.batch === filter)
-            dispatch(menteeLoadSuccess(mentee))
+            dispatch(menteeLoadSuccess({ mentee, isFilter: true }))
         } catch (error) {
             dispatch(menteeLoadFailure())
         }
@@ -89,7 +92,7 @@ export const menteeSortFlow = (isSort) => {
             } else {
                 mentee = mentee.sort((a, b) => a.email.localeCompare(b.email))
             }
-            dispatch(menteeLoadSuccess(mentee))
+            dispatch(menteeLoadSuccess({ mentee, isFilter: true }))
         } catch (error) {
             dispatch(menteeLoadFailure())
         }

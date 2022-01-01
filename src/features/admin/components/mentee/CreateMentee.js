@@ -5,7 +5,8 @@ import Select from "react-select"
 
 import useInputFormField from 'shared/hooks/useInputFormField';
 import { signUpSelector, createUserWithEmailPasswordLoadFlow } from 'features/auth/middleware/signUpSlice'
-import { apiGetAllBatches, apiGetAllTeams } from "../../api/api"
+import { apiGetAllBatches, apiGetAllTeams } from "../../api/api";
+import CloseIcon from "shared/components/close/CloseIcon";
 
 ReactModal.setAppElement('#root');
 
@@ -48,7 +49,7 @@ const CreateMentee = (props) => {
 
     const renderAllTeams = async () => {
         const data = await apiGetAllTeams()
-        const mapData = data.map(ele => {
+        const mapData = data.teams.map(ele => {
             return { value: ele.name, label: ele.name }
         })
         setTeamOptions(mapData)
@@ -82,8 +83,8 @@ const CreateMentee = (props) => {
                 style={customStyles}
             >
                 <div className="flex justify-between">
-                    <h1 className="font-bold text-green-500">Create Mentee</h1>
-                    <button className="text-2xl font-bold text-red-500" onClick={props.onRequestClose}>X</button>
+                    <h1 className="font-bold text-green-500 mb-3">Create Mentee</h1>
+                    <CloseIcon handleClick={props.onRequestClose} />
                 </div>
                 <div className="">
                     <form onSubmit={handleSubmit} >
@@ -120,7 +121,7 @@ const CreateMentee = (props) => {
                             />
                         </div>
                         <div className="mb-3">
-                        <label className="block text-gray-700 text-sm font-bold mb-1" htmlFor="title">Mentee Email</label>
+                            <label className="block text-gray-700 text-sm font-bold mb-1" htmlFor="title">Mentee Email</label>
                             <input
                                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                 name="Email"
@@ -133,7 +134,7 @@ const CreateMentee = (props) => {
                         </div>
 
                         <div className="text-center">
-                            <button className="btn">Submit</button>
+                            <button className="btn text-lg">Submit</button>
                         </div>
                     </form>
                 </div>

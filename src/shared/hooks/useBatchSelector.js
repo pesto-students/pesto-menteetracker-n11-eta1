@@ -1,27 +1,24 @@
 import { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux'
 
-import {apiGetAllBatches} from "features/admin/api/api"
+import { batchSelector, batchLoadFlow } from "features/admin/middleware/batchSlice";
 
 const useBatchSelector = () => {
-    
-    const [batcheOptions, setBatcheOptions] = useState([]);
+    const dispatch = useDispatch()
+    const { loading, error, batchList } = useSelector(batchSelector);
     const [batch, setBatches] = useState(null)
 
     useEffect(() => {
-        renderAllBatches()
+        dispatch(batchLoadFlow());
     }, [])
 
     const handleChangeBatches = selectedOption => {
         setBatches(selectedOption)
     };
 
-    const renderAllBatches = async () => {
-        const data = await apiGetAllBatches()
-        const mapData = data.map(ele => {
-            return { value: ele.name, label: ele.name }
-        })
-        setBatcheOptions(mapData)
-    }
+    const batcheOptions = batchList.map(ele => {
+        return { value: ele.name, label: ele.name }
+    })
 
     return { batch, handleChangeBatches, batcheOptions }
 }

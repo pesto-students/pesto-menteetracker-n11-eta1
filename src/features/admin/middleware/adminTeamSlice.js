@@ -4,7 +4,8 @@ import { apiGetAlladminTeam } from '../api/api'
 export const initialState = {
     loading: false,
     error: null,
-    adminTeamList: []
+    adminTeamList: [],
+    adminBatchList: []
 }
 
 const adminTeamSlice = createSlice({
@@ -17,9 +18,10 @@ const adminTeamSlice = createSlice({
         adminTeamLoadSuccess: (state, { payload }) => {
             state.loading = false
             state.error = null
-            state.adminTeamList = payload
+            state.adminTeamList = payload.teams
+            state.adminBatchList = payload.batches
         },
-        adminTeamLoadFailure: (state, {payload}) => {
+        adminTeamLoadFailure: (state, { payload }) => {
             state.loading = false
             state.error = payload
         }

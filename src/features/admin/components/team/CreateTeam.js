@@ -11,6 +11,7 @@ import useMentorSelector from "shared/hooks/useMentorSelector";
 import useMenteeSelector from "shared/hooks/useMenteeSelector";
 import { apiCreateTeam } from "../../api/api";
 import { adminTeamLoadFlow } from "../../middleware/adminTeamSlice";
+import CloseIcon from "shared/components/close/CloseIcon";
 
 
 const reactModalCustomStyles = {
@@ -22,7 +23,7 @@ const reactModalCustomStyles = {
         marginRight: '-50%',
         transform: 'translate(-50%, -50%)',
         width: "400px",
-        height: "470px"
+        height: "480px"
     },
 };
 
@@ -43,9 +44,9 @@ const CreateTeam = (props) => {
             mentee: mentee.map(ele => ele.value)
         })
         console.log(resp.status)
-        if (resp.status == 200){
+        if (resp.status == 200) {
             toast.success("Successfully created batch")
-        }else{
+        } else {
             toast.warning("Failed to create batch")
         }
         props.onRequestClose();
@@ -59,12 +60,12 @@ const CreateTeam = (props) => {
                 style={reactModalCustomStyles}
             >
                 <div className="">
-                    <div className="flex justify-between">
+                    <div className="flex justify-between mb-4">
                         <h1 className="font-bold text-green-500">Create Team</h1>
-                        <button className="text-2xl font-bold text-red-500" onClick={props.onRequestClose}>X</button>
+                        <CloseIcon handleClick={props.onRequestClose} />
                     </div>
                     <form onSubmit={handleSubmit}>
-                        <div className="mb-2">
+                        <div className="mb-3">
                             <label className="block text-gray-700 text-sm font-bold mb-1" htmlFor="title">Start Date</label>
                             <input
                                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -76,7 +77,7 @@ const CreateTeam = (props) => {
                                 required
                             />
                         </div>
-                        <div className="mb-2">
+                        <div className="mb-3">
                             <label className="block text-gray-700 text-sm font-bold mb-1" htmlFor="title">Team Name</label>
                             <input
                                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -88,7 +89,7 @@ const CreateTeam = (props) => {
                                 required
                             />
                         </div>
-                        <div className="mb-2">
+                        <div className="mb-3">
                             <label className="block text-gray-700 text-sm font-bold mb-1">Select Batch</label>
                             <Select
                                 className=""
@@ -98,7 +99,7 @@ const CreateTeam = (props) => {
                                 isMulti={false}
                             />
                         </div>
-                        <div className="mb-2">
+                        <div className="mb-3">
                             <label className="block text-gray-700 text-sm font-bold mb-1">Select Mentor</label>
                             <Select
                                 className=""
@@ -108,7 +109,7 @@ const CreateTeam = (props) => {
                                 isMulti={false}
                             />
                         </div>
-                        <div className="mb-2">
+                        <div className="mb-3">
                             <label className="block text-gray-700 text-sm font-bold mb-1">Select Mentee</label>
                             <Select
                                 className=""
