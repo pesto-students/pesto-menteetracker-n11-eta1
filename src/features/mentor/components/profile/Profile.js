@@ -37,7 +37,7 @@ const MentorProfile = () => {
                                     </div>
                                     <div class="flex">
                                         <div class="py-2 font-semibold ">Email :</div>
-                                        <div class="py-2 px-3">{mentor.email}</div>
+                                        <div class="py-2 px-3">{mentor.name}</div>
                                     </div>
                                 </div>
                             </div>

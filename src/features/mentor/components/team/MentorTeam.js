@@ -24,7 +24,7 @@ const MentorTeam = () => {
         })
         const batch = batchList.find(o => o.name === team.batch)
         return {
-            startdate: batch ? batch.startdate : "dummydate",
+            startdate: batch ? batch.startdate : "10/12/2022",
             name: team.name,
             batch: team.batch,
             team: team.name,

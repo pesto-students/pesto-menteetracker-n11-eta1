@@ -12,7 +12,6 @@ const batchSlice = createSlice({
     initialState: initialState,
     reducers: {
         batchLoading: (state) => {
-            console.log("batch loading called")
             state.loading = true
         },
         batchLoadSuccess: (state, { payload }) => {
@@ -35,7 +34,6 @@ export const batchSelector = (state) => state.batch;
 export const batchReducer = batchSlice.reducer;
 
 export const batchLoadFlow = () => {
-    console.log("batchLoadFlow called")
     return async (dispatch) => {
         dispatch(batchLoading())
         try {

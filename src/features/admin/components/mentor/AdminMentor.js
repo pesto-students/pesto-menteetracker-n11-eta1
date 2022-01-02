@@ -29,7 +29,8 @@ const AdminMentor = () => {
             <SideNavBar></SideNavBar>
             <main className="h-screen">
                 <div >
-                    <button onClick={openModal} className="btn mx-10 my-3">Add Mentor</button>
+                    <button onClick={openModal} className="btn mx-10 my-3 mb-10">Add Mentor</button>
+                    <div className="mx-10 text-2xl text-indigo-900">Mentors</div>
                     <div className="m-10 grid grid-cols-3 gap-7">
                         {mentorList?.map(mentor => {
                             return <MentorCard mentor={mentor} key={mentor._id} />

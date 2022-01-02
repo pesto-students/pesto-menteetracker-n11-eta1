@@ -1,9 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
-import { apiAddUser, apiCreateMentee } from "../api/api"
+import { apiAddUser, apiCreateMentee, apiCreateMentor } from "../api/api"
 
 import firebaseApp from '../../../config/firebase';
 import { menteeLoadFlow } from "features/admin/middleware/menteeSlice";
+import { mentorLoadFlow } from "features/admin/middleware/mentorSlice";
 const auth = getAuth(firebaseApp);
 
 export const initialState = {
@@ -48,7 +49,7 @@ export const createUserWithEmailPasswordLoadFlow = (credentials) => {
                 }
                 await apiAddUser(user)
                 if (credentials.isMentee) {
-                     // SignUp for mentee
+                    // SignUp for mentee
                     const mentee = {
                         "uid": res.user.uid,
                         "email": credentials.email,
@@ -59,15 +60,17 @@ export const createUserWithEmailPasswordLoadFlow = (credentials) => {
                     const resp = await apiCreateMentee(mentee)
                     console.log(resp)
                     dispatch(menteeLoadFlow())
-                }else{
+                } else {
                     // SignUp for mentor
                     const mentor = {
                         "uid": res.user.uid,
                         "email": credentials.email,
-                        "name" : credentials.name
+                        "name": credentials.name
                     }
                     console.log(mentor)
-
+                    const resp = await apiCreateMentor(mentor)
+                    console.log(resp)
+                    dispatch(mentorLoadFlow())
                 }
                 dispatch(signUpSuccess())
             }).catch((err) => {

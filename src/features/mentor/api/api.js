@@ -58,9 +58,9 @@ export const apiUpdateProfile = async (mentorData, profileId) => {
 
 // dashboards
 export const apiGetMentorBatchsBarChart = async () => {
-    const mentorId = "8LPM3YUWRkUHiIA08qGbXfFCvKO2"
+    const user = JSON.parse(window.localStorage.getItem('user'))
     const response = await axiosInstance.get(
-        "/api/mentor/barchart/" + mentorId,
+        "/api/mentor/barchart/" + user.uid,
     )
     var res = {}
     response.data.map(ele => {

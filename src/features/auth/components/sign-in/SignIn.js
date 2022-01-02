@@ -33,8 +33,9 @@ const SignIn = () => {
         dispatch(signInWithGoogleLoadFlow())
     }
     return (
-        <div>
-            <div className='container'>
+        <div className="bg-gray-100 flex h-screen">
+            <div className="ml-64 mt-80 text-2xl text-indigo-900">Pesto Mentee Tracker</div>
+            <div className="ml-64 mt-20">
                 <div className='window'>
                     <div className='overlay'></div>
                     <div className='content'>
@@ -58,9 +59,7 @@ const SignIn = () => {
                                 onChange={password.onChange}
                             ></input>
                         </div>
-                        <div className='spacing'>or continue with
-                        <button className='highlight' onClick={googleSignIn}>Google</button>
-                        </div>
+                        <div className="h-24"></div>
                         <div><button className='ghost-round full-width'
                             onClick={handleSubmit}
                         >Login</button></div>
