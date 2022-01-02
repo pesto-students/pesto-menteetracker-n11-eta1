@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react'
+import { useState } from 'react'
 
 const useShowHideModal = () => {
     const [showModal, setShowModal] = useState(false)

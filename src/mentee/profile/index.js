@@ -1,7 +1,8 @@
-import { useState } from 'react';
+import React from 'react';
 
 function MenteeProfile() {
-    const [data, setData] = useState({
+
+    const data = {
         id: 1,
         name: 'John Doe',
         email: 'a@example.com',
@@ -12,7 +13,7 @@ function MenteeProfile() {
         experience: 2,
         education: 'Bachelor of Science in Computer Science',
         img: 'https://i.pinimg.com/564x/ae/ec/c2/aeecc22a67dac7987a80ac0724658493.jpg'
-    });
+    };
 
     return (
         <div>

@@ -6,13 +6,15 @@ import SideNavBar from "../side-nav-bar/SideNavBar"
 
 const SingleSessionView = () => {
     const { id } = useParams();
-    console.log(id)
     const [sessionData, setSessionData] = useState(null)
 
-    useEffect(async () => {
-        const resp = await apiGetSession(id);
-        console.log(resp)
-        setSessionData(resp)
+    useEffect(() => {
+        const fetchData = async () => {
+            const resp = await apiGetSession(id);
+            setSessionData(resp)
+        }
+
+        fetchData();
     }, [id])
 
     const getDetails = () => {

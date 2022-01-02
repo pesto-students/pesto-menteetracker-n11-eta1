@@ -15,12 +15,13 @@ const MentorTeam = () => {
     useEffect(() => {
         dispatch(mentorTeamLoadFlow())
         dispatch(batchLoadFlow())
-    }, [])
+    }, )
 
     const newMentorTeamList = mentorTeamList?.map(team => {
         var mentee = "";
         team.mentee?.map(m => {
-            mentee = mentee + m + ",  "
+            mentee = mentee + m + ",  ";
+            return null;
         })
         const batch = batchList.find(o => o.name === team.batch)
         return {

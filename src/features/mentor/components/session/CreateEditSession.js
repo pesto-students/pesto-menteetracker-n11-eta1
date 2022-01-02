@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import ReactModal from 'react-modal';
 import Select from "react-select";
 import { useDispatch } from 'react-redux'
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import useInputFormField from 'shared/hooks/useInputFormField';
@@ -39,8 +39,8 @@ const CreateEditSession = (props) => {
     const { week, handleChangeWeek, weekOptions } = useWeekSelector();
     const { session, handleChangeSession, sessionOptions } = useSessionSelector();
 
-    useEffect(async () => {
-        if (props.isEdit) {
+    useEffect(() => {
+        const fetchData = async () => {
             const session = await apiGetSession(props.id);
             handleChangeBatches({ value: session.batch, label: session.batch })
             handleChangeTeam({ value: session.team, label: session.team })
@@ -49,6 +49,10 @@ const CreateEditSession = (props) => {
             ajanda.initialValue(session.ajanda)
             startdate.initialValue(session.datetime)
             duration.initialValue(session.duration)
+        }
+
+        if (props.isEdit) {
+            fetchData()
         }
     }, [])
 

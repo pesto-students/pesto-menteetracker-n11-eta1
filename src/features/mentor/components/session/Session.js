@@ -16,7 +16,7 @@ const MentorSession = () => {
 
     useEffect(() => {
         dispatch(mentorSessionLoadFlow())
-    }, [])
+    })
 
     return (
         <div className="flex bg-gray-100">

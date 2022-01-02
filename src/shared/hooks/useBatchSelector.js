@@ -10,7 +10,7 @@ const useBatchSelector = () => {
 
     useEffect(() => {
         dispatch(batchLoadFlow());
-    }, [])
+    },)
 
     const handleChangeBatches = selectedOption => {
         setBatches(selectedOption)
