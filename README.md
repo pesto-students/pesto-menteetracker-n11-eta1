@@ -2,7 +2,7 @@
 <br />
 
 <p align="center">
-    <img src="https://res.cloudinary.com/dpkce11g6/image/upload/v1647347325/pesto_ql86te.png" alt="Logo" width="400" height="200" >
+    <img src="https://res.cloudinary.com/dpkce11g6/image/upload/v1647347325/pesto_ql86te.png" alt="Logo" width="200" height="100" >
 </p>
 
 <h1 align="center">Pesto Mentee Tracker</h1>
