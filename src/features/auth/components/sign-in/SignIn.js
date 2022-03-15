@@ -29,6 +29,22 @@ const SignIn = () => {
         }))
     }
 
+    const handleClickAdmin = async (event) => {
+        event.preventDefault();
+        await dispatch(signInWithEmailPasswordLoadFlow({
+            email: "admin@gmail.com",
+            password: "admin@123"
+        }))
+    }
+
+    const handleClickMentor = async (event) => {
+        event.preventDefault();
+        await dispatch(signInWithEmailPasswordLoadFlow({
+            email: "raghu@gmail.com",
+            password: "raghu@gmail.com"
+        }))
+    }
+
     const googleSignIn = () => {
         dispatch(signInWithGoogleLoadFlow())
     }
@@ -59,10 +75,16 @@ const SignIn = () => {
                                 onChange={password.onChange}
                             ></input>
                         </div>
-                        <div className="h-24"></div>
+                        <div className="h-12"></div>
                         <div><button className='ghost-round full-width'
                             onClick={handleSubmit}
                         >Login</button></div>
+                        <div>
+                            <button onClick={handleClickAdmin} className='ghost-round full-width'>
+                                Log In as Admin</button>
+                            <button onClick={handleClickMentor} className='ghost-round full-width'>
+                                Log In as Mentor</button>
+                        </div>
                     </div>
                 </div>
             </div>

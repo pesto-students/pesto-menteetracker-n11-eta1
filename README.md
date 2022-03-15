@@ -1,6 +1,10 @@
 
 <br />
 
+<p align="center">
+    <img src="https://github.com/pesto-students/pesto-menteetracker-n11-eta1-fe/tree/master/src/assets/pesto.png" alt="Logo" width="500" >
+</p>
+
 <h1 align="center">Pesto Mentee Tracker</h1>
 <h3 align="center">
 	<a href="http://pesto-mentee-tracker.s3-website-us-east-1.amazonaws.com/">Live App URL</a>
@@ -92,12 +96,12 @@ Following are the simple steps to run this project.
 
 1. Clone the repo
    ```sh
-   git clone https://github.com/pesto-students/mock-prep-n11-eta2-fe
+   git clone https://github.com/pesto-students/pesto-menteetracker-n11-eta1-fe
    ```
 
 2. Install NPM packages
    ```sh
-   cd mock-prep-n11-eta2-fe && npm install
+   cd pesto-menteetracker-n11-eta1-fe && npm install
    ```
 3. Run
    ```sh
